@@ -9,11 +9,11 @@ import yourchoiceRedux from '../src'
 
 const {actions:{rangeToSelection}, reducer} = yourchoiceRedux
 const boundRangeToSelection = bind(rangeToSelection, null, 'selectionA')
-const action = boundRangeToSelection('itemA')
 
 describe('rangeToSelection', () => {
     describe('action', () => {
         it('should return action including type and payload', () => {
+            const action = boundRangeToSelection('itemA')
             expect(action).to.have.property('type', 'RANGE_TO_SELECTION')
             expect(action.payload).to.deep.equal({
                 selectionName: 'selectionA',
@@ -28,6 +28,7 @@ describe('rangeToSelection', () => {
                 selectionA: () => ['itemA', 'itemB', 'itemC']
             }
 
+            const action = boundRangeToSelection('itemA')
             const state = reducer(getSelectionMap, action, undefined)
 
             const expectedState = flow(
