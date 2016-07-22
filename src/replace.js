@@ -1,23 +1,23 @@
 import assert from 'assert'
-import {replace} from 'yourchoice'
+import { replace } from 'yourchoice'
 
-const replaceSelection = (selectionName, itemId) => {
-    return {
-        type: 'REPLACE_SELECTION',
-        payload: {
-            selectionName,
-            itemId
-        }
-    }
+function replaceSelection(selectionName, itemId) {
+  return {
+    type: 'REPLACE_SELECTION',
+    payload: {
+      selectionName,
+      itemId,
+    },
+  }
 }
 
-const replaceSelectionReducer = ({itemId}, currentSelection) => {
-    assert(itemId, `no item id ('${itemId}') to replace`)
+const replaceSelectionReducer = ({ itemId }, currentSelection) => {
+  assert(itemId, `no item id ('${itemId}') to replace`)
 
-    return replace(itemId, currentSelection)
+  return replace(itemId, currentSelection)
 }
 
 module.exports = {
-    replaceSelection,
-    replaceSelectionReducer
+  replaceSelection,
+  replaceSelectionReducer,
 }

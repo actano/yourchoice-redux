@@ -1,23 +1,23 @@
 import assert from 'assert'
-import {rangeTo} from 'yourchoice'
+import { rangeTo } from 'yourchoice'
 
-const rangeToSelection = (selectionName, itemId) => {
-    return {
-        type: 'RANGE_TO_SELECTION',
-        payload: {
-            selectionName,
-            itemId
-        }
-    }
+function rangeToSelection(selectionName, itemId) {
+  return {
+    type: 'RANGE_TO_SELECTION',
+    payload: {
+      selectionName,
+      itemId,
+    },
+  }
 }
 
-const rangeToSelectionReducer = ({itemId}, currentSelection) => {
-    assert(itemId, `no item id ('${itemId}') to range to`)
+const rangeToSelectionReducer = ({ itemId }, currentSelection) => {
+  assert(itemId, `no item id ('${itemId}') to range to`)
 
-    return rangeTo(itemId, currentSelection)
+  return rangeTo(itemId, currentSelection)
 }
 
 module.exports = {
-    rangeToSelection,
-    rangeToSelectionReducer
+  rangeToSelection,
+  rangeToSelectionReducer,
 }
