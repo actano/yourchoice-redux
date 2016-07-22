@@ -1,7 +1,6 @@
 {
   "libs": [
-    "browser",
-    "lodash"
+    "browser"
   ],
   "plugins": {
     "node": {}

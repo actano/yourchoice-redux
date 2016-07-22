@@ -5,10 +5,7 @@ module.exports = {
     ]
   },
   output: {
-    library: 'Yourchoice',
+    library: 'YourchoiceRedux',
     libraryTarget: 'umd'
-  },
-  externals: {
-    'lodash': '_'
   }
 }
