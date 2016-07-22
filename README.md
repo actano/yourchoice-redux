@@ -7,4 +7,4 @@
 [![Dependency Status](https://david-dm.org/actano/yourchoice-redux.svg)](https://david-dm.org/actano/yourchoice-redux)
 [![devDependency Status](https://david-dm.org/actano/yourchoice-redux/dev-status.svg)](https://david-dm.org/actano/yourchoice-redux#info=devDependencies)
 
-Redux wrapper for the yourchoice library
+Redux wrapper for [yourchoice](https://github.com/actano/yourchoice).
