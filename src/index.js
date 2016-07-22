@@ -26,17 +26,14 @@ const reducerMap = {
     TOGGLE_SELECTION: toggleSelectionReducer
 }
 
-const reducer = curry ((getSelectionMap, action, currentState) => {
+const reducer = curry ((getSelectionMap, action, state) => {
     if(action.error) {
-        return currentState
+        return state
     }
     const selectionName = action.payload.selectionName
 
     if(has(reducerMap, action.type) &&  has(getSelectionMap, selectionName)) {
         const selectableItems = getSelectionMap[selectionName]()
-
-
-        const state = currentState ? currentState : {}
 
         return update(
             selectionName,
@@ -45,7 +42,7 @@ const reducer = curry ((getSelectionMap, action, currentState) => {
                 setItems(selectableItems),
                 curry(reducerMap[action.type])(action.payload)
             ),
-            state
+            state ? state : {}
         )
     } else return state
 })
