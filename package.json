@@ -1,6 +1,6 @@
 {
   "name": "yourchoice-redux",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Redux wrapper for the yourchoice library",
   "license": "MIT",
   "author": "Actano GmbH (https://rplan.com/)",
