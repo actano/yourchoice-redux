@@ -30,14 +30,14 @@ const reducer = curry((getSelectionMap, action, state) => {
     const selectableItems = getSelectionMap[selectionName]()
 
     return update(
-            selectionName,
-            flow(
-                (maybeDefinedState) => (maybeDefinedState || init()),
-                setItems(selectableItems),
-                curry(reducerMap[action.type])(action.payload)
-            ),
-            state || {}
-        )
+      selectionName,
+      flow(
+        (maybeDefinedState) => (maybeDefinedState || init()),
+        setItems(selectableItems),
+        curry(reducerMap[action.type])(action.payload)
+      ),
+      state || {}
+    )
   }
   return state
 })
