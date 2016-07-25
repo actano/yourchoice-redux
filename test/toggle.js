@@ -7,12 +7,12 @@ import bind from 'lodash/bind'
 import { init, setItems, toggle, setSelection } from 'yourchoice'
 import { reducer, actions } from '../src'
 
-const boundToggleSelection = bind(actions.toggle, null, 'selectionA')
+const boundToggle = bind(actions.toggle, null, 'selectionA')
 
 describe('toggle', () => {
   describe('action', () => {
     it('should return action including type and payload', () => {
-      const action = boundToggleSelection('rowA')
+      const action = boundToggle('rowA')
 
       expect(action).to.have.property('type', 'yourchoice-redux/TOGGLE')
       expect(action.payload).to.deep.equal({
@@ -30,7 +30,7 @@ describe('toggle', () => {
                 setItems(items),
                 setSelection(['rowB', 'rowC'])
             )() }
-      const action = boundToggleSelection('rowA')
+      const action = boundToggle('rowA')
       const getSelectionMap = {
         selectionA: () => items,
       }
@@ -46,7 +46,7 @@ describe('toggle', () => {
                 setItems(items),
                 setSelection(['rowA', 'rowB', 'rowC'])
             )() }
-      const action = boundToggleSelection('rowA')
+      const action = boundToggle('rowA')
       const getSelectionMap = {
         selectionA: () => items,
       }

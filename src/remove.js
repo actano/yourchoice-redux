@@ -12,12 +12,12 @@ function removeActionCreator(selectionName, itemId) {
   }
 }
 
-const removeSelectionReducer = ({ itemId }, currentSelection) => {
+const removeReducer = ({ itemId }, currentSelection) => {
   assert(itemId, `no item id ('${itemId}') to remove`)
   return remove(itemId, currentSelection)
 }
 
 export {
   removeActionCreator,
-  removeSelectionReducer,
+  removeReducer,
 }

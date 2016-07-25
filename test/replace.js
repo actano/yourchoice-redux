@@ -7,12 +7,12 @@ import bind from 'lodash/bind'
 import { init, setItems, replace, setSelection } from 'yourchoice'
 import { reducer, actions } from '../src'
 
-const boundReplaceSelection = bind(actions.replace, null, 'selectionA')
+const boundReplace = bind(actions.replace, null, 'selectionA')
 
 describe('replace', () => {
   describe('action', () => {
     it('should return action including type and payload', () => {
-      const action = boundReplaceSelection('itemA')
+      const action = boundReplace('itemA')
 
       expect(action).to.have.property('type', 'yourchoice-redux/REPLACE')
       expect(action.payload).to.deep.equal({
@@ -40,7 +40,7 @@ describe('replace', () => {
         selectionA: () => [],
       }
 
-      const action = boundReplaceSelection('itemA')
+      const action = boundReplace('itemA')
       const state = reducer(getSelectionMap, action, undefined)
 
       const expectedState = flow(
@@ -57,7 +57,7 @@ describe('replace', () => {
         selectionA: () => ['itemA', 'itemB', 'itemC'],
       }
 
-      const action = boundReplaceSelection('itemA')
+      const action = boundReplace('itemA')
       const state = reducer(getSelectionMap, action, initialState)
 
       const expectedState =
@@ -71,7 +71,7 @@ describe('replace', () => {
         selectionA: () => ['itemA', 'itemB', 'itemC', 'itemD'],
       }
 
-      const action = boundReplaceSelection('itemD')
+      const action = boundReplace('itemD')
       const state = reducer(getSelectionMap, action, initialState)
 
       const expectedState = flow(

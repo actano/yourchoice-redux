@@ -6,19 +6,19 @@ import {
 } from 'lodash/fp'
 import { init, setItems } from 'yourchoice'
 
-import { rangeToSelectionReducer } from './rangeTo'
-import { removeSelectionReducer } from './remove'
-import { removeAllSelectionReducer } from './removeAll'
-import { replaceSelectionReducer } from './replace'
-import { toggleSelectionReducer } from './toggle'
+import { rangeToReducer } from './rangeTo'
+import { removeReducer } from './remove'
+import { removeAllReducer } from './removeAll'
+import { replaceReducer } from './replace'
+import { toggleReducer } from './toggle'
 import { namespace } from './constants'
 
 const reducerMap = {}
-reducerMap[`${namespace}RANGE_TO`] = rangeToSelectionReducer
-reducerMap[`${namespace}REMOVE`] = removeSelectionReducer
-reducerMap[`${namespace}REMOVE_ALL`] = removeAllSelectionReducer
-reducerMap[`${namespace}REPLACE`] = replaceSelectionReducer
-reducerMap[`${namespace}TOGGLE`] = toggleSelectionReducer
+reducerMap[`${namespace}RANGE_TO`] = rangeToReducer
+reducerMap[`${namespace}REMOVE`] = removeReducer
+reducerMap[`${namespace}REMOVE_ALL`] = removeAllReducer
+reducerMap[`${namespace}REPLACE`] = replaceReducer
+reducerMap[`${namespace}TOGGLE`] = toggleReducer
 
 const reducer = curry((getSelectionMap, action, state) => {
   if (action.error) {

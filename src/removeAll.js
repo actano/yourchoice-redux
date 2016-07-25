@@ -10,11 +10,11 @@ function removeAllActionCreator(selectionName) {
   }
 }
 
-function removeAllSelectionReducer(payload, currentSelection) {
+function removeAllReducer(payload, currentSelection) {
   return removeAll(currentSelection)
 }
 
 export {
   removeAllActionCreator,
-  removeAllSelectionReducer,
+  removeAllReducer,
 }

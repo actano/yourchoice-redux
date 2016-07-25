@@ -7,12 +7,12 @@ import bind from 'lodash/bind'
 import { init, setItems, remove, setSelection } from 'yourchoice'
 import { reducer, actions } from '../src'
 
-const boundRemoveSelection = bind(actions.remove, null, 'selectionA')
+const boundRemove = bind(actions.remove, null, 'selectionA')
 
 describe('remove', () => {
   describe('action', () => {
     it('should return action including type and payload', () => {
-      const action = boundRemoveSelection('itemA')
+      const action = boundRemove('itemA')
 
       expect(action).to.have.property('type', 'yourchoice-redux/REMOVE')
       expect(action.payload).to.deep.equal({
@@ -28,7 +28,7 @@ describe('remove', () => {
         selectionA: () => ['itemA', 'itemB', 'itemC'],
       }
 
-      const action = boundRemoveSelection('itemA')
+      const action = boundRemove('itemA')
       const state = reducer(getSelectionMap, action, undefined)
 
       const expectedState = flow(
@@ -50,7 +50,7 @@ describe('remove', () => {
         selectionA: () => ['itemA', 'itemB', 'itemC'],
       }
 
-      const action = boundRemoveSelection('itemB')
+      const action = boundRemove('itemB')
       const state = reducer(getSelectionMap, action, initialState)
 
       const expectedState =
@@ -69,7 +69,7 @@ describe('remove', () => {
         selectionA: () => ['itemA', 'itemB', 'itemC'],
       }
 
-      const action = boundRemoveSelection('itemD')
+      const action = boundRemove('itemD')
       const state = reducer(getSelectionMap, action, initialState)
 
       const expectedState = flow(

@@ -12,7 +12,7 @@ function rangeToActionCreator(selectionName, itemId) {
   }
 }
 
-const rangeToSelectionReducer = ({ itemId }, currentSelection) => {
+const rangeToReducer = ({ itemId }, currentSelection) => {
   assert(itemId, `no item id ('${itemId}') to range to`)
 
   return rangeTo(itemId, currentSelection)
@@ -20,5 +20,5 @@ const rangeToSelectionReducer = ({ itemId }, currentSelection) => {
 
 export {
   rangeToActionCreator,
-  rangeToSelectionReducer,
+  rangeToReducer,
 }

@@ -12,7 +12,7 @@ function replaceActionCreator(selectionName, itemId) {
   }
 }
 
-const replaceSelectionReducer = ({ itemId }, currentSelection) => {
+const replaceReducer = ({ itemId }, currentSelection) => {
   assert(itemId, `no item id ('${itemId}') to replace`)
 
   return replace(itemId, currentSelection)
@@ -20,5 +20,5 @@ const replaceSelectionReducer = ({ itemId }, currentSelection) => {
 
 export {
   replaceActionCreator,
-  replaceSelectionReducer,
+  replaceReducer,
 }

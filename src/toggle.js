@@ -12,7 +12,7 @@ function toggleActionCreator(selectionName, itemId) {
   }
 }
 
-const toggleSelectionReducer = ({ itemId }, currentSelection) => {
+const toggleReducer = ({ itemId }, currentSelection) => {
   assert(itemId, `no item id ('${itemId}') to toggle`)
 
   return toggle(itemId, currentSelection)
@@ -20,5 +20,5 @@ const toggleSelectionReducer = ({ itemId }, currentSelection) => {
 
 export {
   toggleActionCreator,
-  toggleSelectionReducer,
+  toggleReducer,
 }
