@@ -1,16 +1,15 @@
 import assert from 'assert'
+import { curry } from 'lodash/fp'
 import { replace } from 'yourchoice'
 import { REPLACE } from './actionTypes'
 
-function replaceActionCreator(selectionName, itemId) {
-  return {
-    type: REPLACE,
-    payload: {
-      selectionName,
-      itemId,
-    },
-  }
-}
+const replaceActionCreator = curry((selectionName, itemId) => ({
+  type: REPLACE,
+  payload: {
+    selectionName,
+    itemId,
+  },
+}))
 
 const replaceReducer = ({ itemId }, currentSelection) => {
   assert(itemId, `no item id ('${itemId}') to replace`)

@@ -1,14 +1,13 @@
+import { curry } from 'lodash/fp'
 import { removeAll } from 'yourchoice'
 import { REMOVE_ALL } from './actionTypes'
 
-function removeAllActionCreator(selectionName) {
-  return {
-    type: REMOVE_ALL,
-    payload: {
-      selectionName,
-    },
-  }
-}
+const removeAllActionCreator = curry((selectionName) => ({
+  type: REMOVE_ALL,
+  payload: {
+    selectionName,
+  },
+}))
 
 function removeAllReducer(payload, currentSelection) {
   return removeAll(currentSelection)
