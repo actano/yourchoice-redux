@@ -13,7 +13,7 @@
     "prepublish": "npm run clean && npm run build",
     "lint": "eslint \"src/**/*.js\" \"test/**/*.js\""
   },
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "nyc": {
     "include": [
       "src/*.js"
