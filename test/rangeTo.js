@@ -7,10 +7,9 @@ import bind from 'lodash/bind'
 import { init, setItems, rangeTo } from 'yourchoice'
 import { reducer, actions } from '../src'
 
-const { rangeToSelection } = actions
-const boundRangeToSelection = bind(rangeToSelection, null, 'selectionA')
+const boundRangeToSelection = bind(actions.rangeTo, null, 'selectionA')
 
-describe('rangeToSelection', () => {
+describe('rangeTo', () => {
   describe('action', () => {
     it('should return action including type and payload', () => {
       const action = boundRangeToSelection('itemA')

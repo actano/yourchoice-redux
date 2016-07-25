@@ -1,7 +1,7 @@
 import { removeAll } from 'yourchoice'
 import { namespace } from './constants'
 
-function removeAllSelection(selectionName) {
+function removeAllActionCreator(selectionName) {
   return {
     type: `${namespace}REMOVE_ALL`,
     payload: {
@@ -15,6 +15,6 @@ function removeAllSelectionReducer(payload, currentSelection) {
 }
 
 export {
-  removeAllSelection,
+  removeAllActionCreator,
   removeAllSelectionReducer,
 }

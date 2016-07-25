@@ -1,16 +1,16 @@
-import { rangeToSelection } from './rangeTo'
-import { removeSelection } from './remove'
-import { removeAllSelection } from './removeAll'
-import { replaceSelection } from './replace'
-import { toggleSelection } from './toggle'
+import { rangeToActionCreator as rangeTo } from './rangeTo'
+import { removeActionCreator as remove } from './remove'
+import { removeAllActionCreator as removeAll } from './removeAll'
+import { replaceActionCreator as replace } from './replace'
+import { toggleActionCreator as toggle } from './toggle'
 import reducer from './reducer'
 
 const actions = {
-  rangeToSelection,
-  removeSelection,
-  removeAllSelection,
-  replaceSelection,
-  toggleSelection,
+  rangeTo,
+  remove,
+  removeAll,
+  replace,
+  toggle,
 }
 
 export {

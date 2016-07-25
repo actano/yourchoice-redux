@@ -2,7 +2,7 @@ import assert from 'assert'
 import { toggle } from 'yourchoice'
 import { namespace } from './constants'
 
-function toggleSelection(selectionName, itemId) {
+function toggleActionCreator(selectionName, itemId) {
   return {
     type: `${namespace}TOGGLE`,
     payload: {
@@ -19,6 +19,6 @@ const toggleSelectionReducer = ({ itemId }, currentSelection) => {
 }
 
 export {
-  toggleSelection,
+  toggleActionCreator,
   toggleSelectionReducer,
 }

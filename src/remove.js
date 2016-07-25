@@ -2,7 +2,7 @@ import assert from 'assert'
 import { remove } from 'yourchoice'
 import { namespace } from './constants'
 
-function removeSelection(selectionName, itemId) {
+function removeActionCreator(selectionName, itemId) {
   return {
     type: `${namespace}REMOVE`,
     payload: {
@@ -18,6 +18,6 @@ const removeSelectionReducer = ({ itemId }, currentSelection) => {
 }
 
 export {
-  removeSelection,
+  removeActionCreator,
   removeSelectionReducer,
 }

@@ -2,7 +2,7 @@ import assert from 'assert'
 import { rangeTo } from 'yourchoice'
 import { namespace } from './constants'
 
-function rangeToSelection(selectionName, itemId) {
+function rangeToActionCreator(selectionName, itemId) {
   return {
     type: `${namespace}RANGE_TO`,
     payload: {
@@ -19,6 +19,6 @@ const rangeToSelectionReducer = ({ itemId }, currentSelection) => {
 }
 
 export {
-  rangeToSelection,
+  rangeToActionCreator,
   rangeToSelectionReducer,
 }

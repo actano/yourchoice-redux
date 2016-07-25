@@ -7,10 +7,9 @@ import bind from 'lodash/bind'
 import { init, setItems, remove, setSelection } from 'yourchoice'
 import { reducer, actions } from '../src'
 
-const { removeSelection } = actions
-const boundRemoveSelection = bind(removeSelection, null, 'selectionA')
+const boundRemoveSelection = bind(actions.remove, null, 'selectionA')
 
-describe('removeSelection', () => {
+describe('remove', () => {
   describe('action', () => {
     it('should return action including type and payload', () => {
       const action = boundRemoveSelection('itemA')

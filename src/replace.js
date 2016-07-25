@@ -2,7 +2,7 @@ import assert from 'assert'
 import { replace } from 'yourchoice'
 import { namespace } from './constants'
 
-function replaceSelection(selectionName, itemId) {
+function replaceActionCreator(selectionName, itemId) {
   return {
     type: `${namespace}REPLACE`,
     payload: {
@@ -19,6 +19,6 @@ const replaceSelectionReducer = ({ itemId }, currentSelection) => {
 }
 
 export {
-  replaceSelection,
+  replaceActionCreator,
   replaceSelectionReducer,
 }
