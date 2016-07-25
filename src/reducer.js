@@ -28,7 +28,7 @@ const reducerMap = {
 }
 
 const reducer = curry((getSelectionMap, action, state) => {
-  if (action.error) {
+  if (action.error || !action.payload) {
     return state
   }
   const selectionName = action.payload.selectionName
