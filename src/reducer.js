@@ -1,7 +1,9 @@
-import curry from 'lodash/fp/curry'
-import has from 'lodash/has'
-import flow from 'lodash/fp/flow'
-import update from 'lodash/fp/update'
+import {
+  has,
+  curry,
+  flow,
+  update,
+} from 'lodash/fp'
 import { init, setItems } from 'yourchoice'
 
 import { rangeToSelectionReducer } from './rangeTo'
@@ -24,7 +26,7 @@ const reducer = curry((getSelectionMap, action, state) => {
   }
   const selectionName = action.payload.selectionName
 
-  if (has(reducerMap, action.type) && has(getSelectionMap, selectionName)) {
+  if (has(action.type, reducerMap) && has(selectionName, getSelectionMap)) {
     const selectableItems = getSelectionMap[selectionName]()
 
     return update(
