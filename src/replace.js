@@ -12,7 +12,7 @@ const replaceActionCreator = curry((selectionName, itemId) => ({
 }))
 
 const replaceReducer = ({ itemId }, currentSelection) => {
-  assert(itemId, `no item id ('${itemId}') to replace`)
+  assert(itemId, `No item id ('${itemId}') to replace`)
 
   return replace(itemId, currentSelection)
 }

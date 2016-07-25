@@ -12,7 +12,7 @@ const removeActionCreator = curry((selectionName, itemId) => ({
 }))
 
 const removeReducer = ({ itemId }, currentSelection) => {
-  assert(itemId, `no item id ('${itemId}') to remove`)
+  assert(itemId, `No item id ('${itemId}') to remove`)
   return remove(itemId, currentSelection)
 }
 
