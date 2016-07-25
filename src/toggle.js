@@ -12,7 +12,7 @@ const toggleActionCreator = curry((selectionName, itemId) => ({
 }))
 
 const toggleReducer = ({ itemId }, currentSelection) => {
-  assert(itemId, `no item id ('${itemId}') to toggle`)
+  assert(itemId, `No item id ('${itemId}') to toggle`)
 
   return toggle(itemId, currentSelection)
 }
