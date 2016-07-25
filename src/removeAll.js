@@ -3,7 +3,7 @@ import { namespace } from './constants'
 
 function removeAllSelection(selectionName) {
   return {
-    type: `${namespace}REMOVE_ALL_SELECTION`,
+    type: `${namespace}REMOVE_ALL`,
     payload: {
       selectionName,
     },

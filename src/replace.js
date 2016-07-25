@@ -4,7 +4,7 @@ import { namespace } from './constants'
 
 function replaceSelection(selectionName, itemId) {
   return {
-    type: `${namespace}REPLACE_SELECTION`,
+    type: `${namespace}REPLACE`,
     payload: {
       selectionName,
       itemId,

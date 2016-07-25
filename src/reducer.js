@@ -14,11 +14,11 @@ import { toggleSelectionReducer } from './toggle'
 import { namespace } from './constants'
 
 const reducerMap = {}
-reducerMap[`${namespace}RANGE_TO_SELECTION`] = rangeToSelectionReducer
-reducerMap[`${namespace}REMOVE_SELECTION`] = removeSelectionReducer
-reducerMap[`${namespace}REMOVE_ALL_SELECTION`] = removeAllSelectionReducer
-reducerMap[`${namespace}REPLACE_SELECTION`] = replaceSelectionReducer
-reducerMap[`${namespace}TOGGLE_SELECTION`] = toggleSelectionReducer
+reducerMap[`${namespace}RANGE_TO`] = rangeToSelectionReducer
+reducerMap[`${namespace}REMOVE`] = removeSelectionReducer
+reducerMap[`${namespace}REMOVE_ALL`] = removeAllSelectionReducer
+reducerMap[`${namespace}REPLACE`] = replaceSelectionReducer
+reducerMap[`${namespace}TOGGLE`] = toggleSelectionReducer
 
 const reducer = curry((getSelectionMap, action, state) => {
   if (action.error) {

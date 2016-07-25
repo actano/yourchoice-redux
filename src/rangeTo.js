@@ -4,7 +4,7 @@ import { namespace } from './constants'
 
 function rangeToSelection(selectionName, itemId) {
   return {
-    type: `${namespace}RANGE_TO_SELECTION`,
+    type: `${namespace}RANGE_TO`,
     payload: {
       selectionName,
       itemId,

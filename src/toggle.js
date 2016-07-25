@@ -4,7 +4,7 @@ import { namespace } from './constants'
 
 function toggleSelection(selectionName, itemId) {
   return {
-    type: `${namespace}TOGGLE_SELECTION`,
+    type: `${namespace}TOGGLE`,
     payload: {
       selectionName,
       itemId,

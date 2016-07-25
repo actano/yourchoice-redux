@@ -15,7 +15,7 @@ describe('removeSelection', () => {
     it('should return action including type and payload', () => {
       const action = boundRemoveSelection('itemA')
 
-      expect(action).to.have.property('type', 'yourchoice-redux/REMOVE_SELECTION')
+      expect(action).to.have.property('type', 'yourchoice-redux/REMOVE')
       expect(action.payload).to.deep.equal({
         selectionName: 'selectionA',
         itemId: 'itemA',

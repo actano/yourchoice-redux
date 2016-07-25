@@ -15,7 +15,7 @@ describe('toggleSelection', () => {
     it('should return action including type and payload', () => {
       const action = boundToggleSelection('rowA')
 
-      expect(action).to.have.property('type', 'yourchoice-redux/TOGGLE_SELECTION')
+      expect(action).to.have.property('type', 'yourchoice-redux/TOGGLE')
       expect(action.payload).to.deep.equal({
         selectionName: 'selectionA',
         itemId: 'rowA',

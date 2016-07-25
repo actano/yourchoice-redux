@@ -15,7 +15,7 @@ describe('replaceSelection', () => {
     it('should return action including type and payload', () => {
       const action = boundReplaceSelection('itemA')
 
-      expect(action).to.have.property('type', 'yourchoice-redux/REPLACE_SELECTION')
+      expect(action).to.have.property('type', 'yourchoice-redux/REPLACE')
       expect(action.payload).to.deep.equal({
         selectionName: 'selectionA',
         itemId: 'itemA',

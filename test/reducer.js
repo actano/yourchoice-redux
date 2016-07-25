@@ -29,7 +29,7 @@ describe('reducer', () => {
   it('should return old state if action has unknown selection name', () => {
     const oldState = 'oldState'
     const action = {
-      type: `${namespace}RANGE_TO_SELECTION`,
+      type: `${namespace}RANGE_TO`,
       payload: {
         selectionName: 'selectionUnknown',
       },

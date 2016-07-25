@@ -4,7 +4,7 @@ import { namespace } from './constants'
 
 function removeSelection(selectionName, itemId) {
   return {
-    type: `${namespace}REMOVE_SELECTION`,
+    type: `${namespace}REMOVE`,
     payload: {
       selectionName,
       itemId,
