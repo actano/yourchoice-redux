@@ -19,12 +19,14 @@ import {
   TOGGLE,
 } from './actionTypes'
 
-const reducerMap = {}
-reducerMap[RANGE_TO] = rangeToReducer
-reducerMap[REMOVE] = removeReducer
-reducerMap[REMOVE_ALL] = removeAllReducer
-reducerMap[REPLACE] = replaceReducer
-reducerMap[TOGGLE] = toggleReducer
+const reducerMap = {
+  [RANGE_TO]: rangeToReducer,
+  [REMOVE]: removeReducer,
+  [REMOVE_ALL]: removeAllReducer,
+  [REPLACE]: replaceReducer,
+  [TOGGLE]: toggleReducer,
+}
+
 const reducer = curry((getSelectionMap, action, state) => {
   if (action.error) {
     return state
