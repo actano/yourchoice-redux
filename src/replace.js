@@ -18,7 +18,7 @@ const replaceSelectionReducer = ({ itemId }, currentSelection) => {
   return replace(itemId, currentSelection)
 }
 
-module.exports = {
+export {
   replaceSelection,
   replaceSelectionReducer,
 }

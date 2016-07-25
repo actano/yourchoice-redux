@@ -17,7 +17,7 @@ const removeSelectionReducer = ({ itemId }, currentSelection) => {
   return remove(itemId, currentSelection)
 }
 
-module.exports = {
+export {
   removeSelection,
   removeSelectionReducer,
 }

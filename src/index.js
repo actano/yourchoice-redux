@@ -48,7 +48,7 @@ const reducer = curry((getSelectionMap, action, state) => {
   return state
 })
 
-module.exports = {
+export {
   actions,
   reducer,
 }

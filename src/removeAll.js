@@ -14,7 +14,7 @@ function removeAllSelectionReducer(payload, currentSelection) {
   return removeAll(currentSelection)
 }
 
-module.exports = {
+export {
   removeAllSelection,
   removeAllSelectionReducer,
 }

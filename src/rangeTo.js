@@ -18,7 +18,7 @@ const rangeToSelectionReducer = ({ itemId }, currentSelection) => {
   return rangeTo(itemId, currentSelection)
 }
 
-module.exports = {
+export {
   rangeToSelection,
   rangeToSelectionReducer,
 }

@@ -18,7 +18,7 @@ const toggleSelectionReducer = ({ itemId }, currentSelection) => {
   return toggle(itemId, currentSelection)
 }
 
-module.exports = {
+export {
   toggleSelection,
   toggleSelectionReducer,
 }
