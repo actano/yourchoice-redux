@@ -1,9 +1,9 @@
 import { removeAll } from 'yourchoice'
-import { namespace } from './constants'
+import { REMOVE_ALL } from './actionTypes'
 
 function removeAllActionCreator(selectionName) {
   return {
-    type: `${namespace}REMOVE_ALL`,
+    type: REMOVE_ALL,
     payload: {
       selectionName,
     },

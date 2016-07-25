@@ -1,10 +1,10 @@
 import assert from 'assert'
 import { remove } from 'yourchoice'
-import { namespace } from './constants'
+import { REMOVE } from './actionTypes'
 
 function removeActionCreator(selectionName, itemId) {
   return {
-    type: `${namespace}REMOVE`,
+    type: REMOVE,
     payload: {
       selectionName,
       itemId,

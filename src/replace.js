@@ -1,10 +1,10 @@
 import assert from 'assert'
 import { replace } from 'yourchoice'
-import { namespace } from './constants'
+import { REPLACE } from './actionTypes'
 
 function replaceActionCreator(selectionName, itemId) {
   return {
-    type: `${namespace}REPLACE`,
+    type: REPLACE,
     payload: {
       selectionName,
       itemId,

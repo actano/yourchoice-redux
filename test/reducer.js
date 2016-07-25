@@ -3,7 +3,7 @@
 
 import { expect } from 'chai'
 import reducer from '../src/reducer'
-import { namespace } from '../src/constants'
+import { RANGE_TO } from '../src/actionTypes'
 
 describe('reducer', () => {
   it('should return old state if action contains error', () => {
@@ -29,7 +29,7 @@ describe('reducer', () => {
   it('should return old state if action has unknown selection name', () => {
     const oldState = 'oldState'
     const action = {
-      type: `${namespace}RANGE_TO`,
+      type: RANGE_TO,
       payload: {
         selectionName: 'selectionUnknown',
       },

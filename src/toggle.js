@@ -1,10 +1,10 @@
 import assert from 'assert'
 import { toggle } from 'yourchoice'
-import { namespace } from './constants'
+import { TOGGLE } from './actionTypes'
 
 function toggleActionCreator(selectionName, itemId) {
   return {
-    type: `${namespace}TOGGLE`,
+    type: TOGGLE,
     payload: {
       selectionName,
       itemId,

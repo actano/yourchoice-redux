@@ -1,10 +1,10 @@
 import assert from 'assert'
 import { rangeTo } from 'yourchoice'
-import { namespace } from './constants'
+import { RANGE_TO } from './actionTypes'
 
 function rangeToActionCreator(selectionName, itemId) {
   return {
-    type: `${namespace}RANGE_TO`,
+    type: RANGE_TO,
     payload: {
       selectionName,
       itemId,
