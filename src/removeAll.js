@@ -1,8 +1,9 @@
 import { removeAll } from 'yourchoice'
+import { namespace } from './constants'
 
 function removeAllSelection(selectionName) {
   return {
-    type: 'REMOVE_ALL_SELECTION',
+    type: `${namespace}REMOVE_ALL_SELECTION`,
     payload: {
       selectionName,
     },

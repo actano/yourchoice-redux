@@ -1,9 +1,10 @@
 import assert from 'assert'
 import { rangeTo } from 'yourchoice'
+import { namespace } from './constants'
 
 function rangeToSelection(selectionName, itemId) {
   return {
-    type: 'RANGE_TO_SELECTION',
+    type: `${namespace}RANGE_TO_SELECTION`,
     payload: {
       selectionName,
       itemId,

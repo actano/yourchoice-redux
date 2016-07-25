@@ -1,9 +1,10 @@
 import assert from 'assert'
 import { remove } from 'yourchoice'
+import { namespace } from './constants'
 
 function removeSelection(selectionName, itemId) {
   return {
-    type: 'REMOVE_SELECTION',
+    type: `${namespace}REMOVE_SELECTION`,
     payload: {
       selectionName,
       itemId,

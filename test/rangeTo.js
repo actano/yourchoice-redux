@@ -14,7 +14,7 @@ describe('rangeToSelection', () => {
   describe('action', () => {
     it('should return action including type and payload', () => {
       const action = boundRangeToSelection('itemA')
-      expect(action).to.have.property('type', 'RANGE_TO_SELECTION')
+      expect(action).to.have.property('type', 'yourchoice-redux/RANGE_TO_SELECTION')
       expect(action.payload).to.deep.equal({
         selectionName: 'selectionA',
         itemId: 'itemA',

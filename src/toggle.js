@@ -1,9 +1,10 @@
 import assert from 'assert'
 import { toggle } from 'yourchoice'
+import { namespace } from './constants'
 
 function toggleSelection(selectionName, itemId) {
   return {
-    type: 'TOGGLE_SELECTION',
+    type: `${namespace}TOGGLE_SELECTION`,
     payload: {
       selectionName,
       itemId,
