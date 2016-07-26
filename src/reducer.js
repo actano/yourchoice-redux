@@ -1,7 +1,7 @@
 import {
-  has,
   curry,
   flow,
+  has,
   update,
   mapValues,
 } from 'lodash/fp'
