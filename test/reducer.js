@@ -2,9 +2,6 @@
 /* eslint-disable no-unused-expressions */
 
 import { expect } from 'chai'
-import {
-  flow,
-} from 'lodash/fp'
 import reducer from '../src/reducer'
 import { RANGE_TO } from '../src/actionTypes'
 import { init, setItems } from 'yourchoice'
