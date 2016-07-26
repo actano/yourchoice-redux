@@ -32,9 +32,9 @@ describe('reducer', () => {
       type: 'UNKNOWN_TYPE',
     }
     const getSelectionMap = {
-      selectionA: () => {},
-      selectionB: () => {},
-      selectionC: () => {},
+      selectionA: () => [],
+      selectionB: () => [],
+      selectionC: () => [],
     }
     const state = reducer(getSelectionMap, action, oldState)
     const expectedState = {
