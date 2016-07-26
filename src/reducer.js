@@ -3,8 +3,8 @@ import {
   flow,
   has,
   update,
-  mapValues,
 } from 'lodash/fp'
+import { mapValues } from 'lodash'
 import { init, setItems } from 'yourchoice'
 
 import { rangeToReducer } from './rangeTo'
@@ -29,7 +29,11 @@ const reducerMap = {
 }
 
 const reducer = curry((getSelectionMap, action, oldState) => {
-  const state = oldState || mapValues(() => init(), getSelectionMap)
+  let state = oldState
+  if (!state) {
+    const initializedState = mapValues(getSelectionMap, () => init())
+    state = mapValues(initializedState, (value, key) => setItems(getSelectionMap[key](), value))
+  }
   if (action.error || !action.payload) {
     return state
   }
@@ -41,7 +45,6 @@ const reducer = curry((getSelectionMap, action, oldState) => {
     return update(
       selectionName,
       flow(
-        (maybeDefinedState) => (maybeDefinedState || init()),
         setItems(selectableItems),
         curry(reducerMap[action.type])(action.payload)
       ),
