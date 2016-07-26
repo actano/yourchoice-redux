@@ -3,6 +3,7 @@ import {
   curry,
   flow,
   update,
+  mapValues,
 } from 'lodash/fp'
 import { init, setItems } from 'yourchoice'
 
@@ -27,7 +28,8 @@ const reducerMap = {
   [TOGGLE]: toggleReducer,
 }
 
-const reducer = curry((getSelectionMap, action, state) => {
+const reducer = curry((getSelectionMap, action, oldState) => {
+  const state = oldState || mapValues(() => init(), getSelectionMap)
   if (action.error || !action.payload) {
     return state
   }
