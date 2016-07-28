@@ -31,8 +31,7 @@ const reducerMap = {
 const reducer = curry((getSelectionMap, action, oldState) => {
   let state = oldState
   if (!state) {
-    const initializedState = mapValues(getSelectionMap, () => init())
-    state = mapValues(initializedState, (value, key) => setItems(getSelectionMap[key](), value))
+    state = mapValues(getSelectionMap, () => init())
   }
   if (action.error || !action.payload) {
     return state
