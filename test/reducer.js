@@ -4,7 +4,7 @@
 import { expect } from 'chai'
 import reducer from '../src/reducer'
 import { RANGE_TO } from '../src/actionTypes'
-import { init, setItems } from 'yourchoice'
+import { init } from 'yourchoice'
 
 describe('reducer', () => {
   it('should return old state if action contains error', () => {
@@ -45,8 +45,7 @@ describe('reducer', () => {
     expect(state).to.deep.equal(expectedState)
   })
 
-  it('should initialize selectable items for every subkey' +
-    'from `getSelectionMap` if state is undefined', () => {
+  it('should initialize state for every subkey if state is undefined', () => {
     const oldState = undefined
     const action = {
       type: 'UNKNOWN_TYPE',
@@ -62,13 +61,9 @@ describe('reducer', () => {
       ],
     }
     const state = reducer(getSelectionMap, action, oldState)
-    const initializedState = {
+    const expectedState = {
       selectionA: init(),
       selectionB: init(),
-    }
-    const expectedState = {
-      selectionA: setItems(['1', '2'], initializedState.selectionA),
-      selectionB: setItems(['2', '3'], initializedState.selectionB),
     }
     expect(state).to.deep.equal(expectedState)
   })
