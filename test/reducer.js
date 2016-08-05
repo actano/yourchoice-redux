@@ -1,10 +1,7 @@
-/* eslint-env mocha */
-/* eslint-disable no-unused-expressions */
-
 import { expect } from 'chai'
+import { init } from 'yourchoice'
 import reducer from '../src/reducer'
 import { RANGE_TO } from '../src/actionTypes'
-import { init } from 'yourchoice'
 
 describe('reducer', () => {
   it('should return old state if action contains error', () => {
