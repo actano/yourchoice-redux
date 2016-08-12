@@ -181,3 +181,8 @@ const pluggedReducer =  yourchoiceReducer.plugin(updateSelectableItemsReducerFac
 // add pluggedReducer to store
 
 ```
+
+### use case: plugged reducer requires top-level state scope
+  
+TBC
+
