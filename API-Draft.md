@@ -175,6 +175,75 @@ const pluggedReducer =  yourchoiceReducer.plugin(updateSelectableItemsReducerFac
 ```
 
 ### use case: plugged reducer requires top-level state scope
+
+that's not possible with the plugin reducer concept, but it is easy to achieve by just adding another 
+   reducer that is calling the  yourchoice reducer at the right place
   
-TBC
+```js
+import { createStore, combineReducers } from 'redux'
+import { reducer as yourchoiceReducer, bindSelection } from 'yourchoice-redux'
+
+// write a custom action marker
+const markActionAsAlterSelectableItems = (action) => {
+     action.meta.changesSelection = true;
+     return action;
+}
+
+// dispatch an action that is changing the selectable items
+store.dispatch( markActionAsAlterSelectableItems( customActionCreator() )
+
+const updateSelectableItemsReducerFactory = (yourChoiceStatePath, getSelectableItemsSelector, setSelectableItemsActionCreator) => {
+    (state, action) => {
+        if(action.meta.changesSelection) {
+            let setItemsAction =  setSelectableItemsActionCreator(getSelectableItemsSelector(state))
+            state[yourChoiceStatePath] = yourchoiceReducer(state[yourChoiceStatePath], setItemsAction) 
+        } 
+        return state
+    }
+}
+
+const myChoice = bindSelection()
+
+const actionSnifferReducer =  updateSelectableItemsReducerFactory(
+    'yourchoice',
+    getSelectableItemsSelector,  // selector that gets the selectable items from another place in the state
+    myChoice.actions.setSelectableItems)
+    
+
+// add actionSnifferReducer and yourchoice reducer to your store
+
+```
+       `
+### proposal for a state shifter factory, not part of yourchoice
+
+```js
+// generic state shifter reducer for a immutable js store
+const shiftState = (statePath, reducer) => (state, action) => {
+    state.updateIn(statePath, (subState) => reducer(subState, action))
+}
+```
+
+the above use use case can be implemented like this
+
+```js
+       
+const shiftedReducer = shiftState(['somewhere', 'yourchoice'], yourchoiceReducer)
+
+const updateSelectableItemsReducerFactory = (getSelectableItemsSelector, setSelectableItemsActionCreator) => {
+    (state, action) => {
+        if(action.meta.changesSelection) {
+            let setItemsAction =  setSelectableItemsActionCreator(getSelectableItemsSelector(state))
+            return shiftedReducer(state, setItemsAction) 
+        } 
+        return state
+    }
+}
+
+const actionSnifferReducer =  updateSelectableItemsReducerFactory(
+    getSelectableItemsSelector,  // selector that gets the selectable items from another place in the state
+    myChoice.actions.setSelectableItems)
+
+// add actionSnifferReducer and  yourchoiceReducer to store
+
+```
 
