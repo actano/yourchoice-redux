@@ -147,12 +147,6 @@ list of selectable items is part of a custom action
 import { createStore, combineReducers } from 'redux'
 import { reducer as yourchoiceReducer, bindSelection } from 'yourchoice-redux'
 
-const store = createStore(combineReducers({
-    // ... other reducers
-    yourchoice: yourchoiceReducer
-}))
-
-
 // write a custom action marker
 const markActionAsAlterSelectableItems = (action) => {
      action.meta.changesSelection = true;
@@ -162,7 +156,6 @@ const markActionAsAlterSelectableItems = (action) => {
 // dispatch an action that is changing the selectable items
 store.dispatch( markActionAsAlterSelectableItems( customActionCreator() )
 
-// depends on concrete actions and payload of another module (BAD, but possible)
 const updateSelectableItemsReducerFactory = (setSelectableItemsActionCreator) => (state, action) => {
     if(action.meta.changesSelection) {
         let setItemsAction =  setSelectableItemsActionCreator(action.payload.item_list)
@@ -177,7 +170,6 @@ const myChoice = bindSelection()
 const pluggedReducer =  yourchoiceReducer.plugin(updateSelectableItemsReducerFactory(
     myChoice.actions.setSelectableItems)
     
-
 // add pluggedReducer to store
 
 ```
