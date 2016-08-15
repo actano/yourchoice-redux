@@ -1,8 +1,11 @@
+/*
+
 ## usage
 
 ### reducer
 
-```js
+*/
+
 import { createStore, combineReducers } from 'redux'
 import {reducer as yourchoiceReducer} from 'yourchoice-redux'
 
@@ -11,10 +14,12 @@ const store = createStore(combineReducers({
     // ... other reducers
     yourchoice: yourchoiceReducer
 }))
-```
-### bind selection
 
-```js
+/*
+### bind selection
+*/
+
+
 import {bindSelection} from 'yourchoice-redux'
 
 // bind yourchoice to specific selection 
@@ -35,11 +40,13 @@ returns {
     }
 }
 */
-```
 
+
+/*
 ### plugin a reducer
+*/
 
-```js
+
 import { createStore, combineReducers } from 'redux'
 import {reducer as yourchoiceReducer} from 'yourchoice-redux'
 
@@ -62,8 +69,9 @@ const store = createStore(combineReducers({
     // ... other reducers
     yourchoice: pluggedReducer
 }))
-```
 
+
+/*
 ## use cases
 
 ### Simple use case 
@@ -72,8 +80,9 @@ Simple list, when list content is altered, the action contains all items.
 The ListComponent is hijacking selectable items of the yourchoice state as own list state,
 that avoids sync issues.
 
- 
-```js
+*/
+
+
 import { createStore, combineReducers } from 'redux'
 import { reducer as yourchoiceReducer, bindSelection } from 'yourchoice-redux'
 
@@ -100,14 +109,16 @@ const mapStateToProps = (state) => {
     mySelection: myChoice.selectors.getSelectedItems(state.yourchoice)
   }
 } 
-```
 
+
+/*
 ### extend simple use case by syncing selectable items through other actions
 
 add plugged custom reducer for partial updates of yourchoice selectableItems.
 the reducer listen to custom actions and update the yourchoice reducer state
+*/
 
-```js
+
 import { createStore, combineReducers } from 'redux'
 import { reducer as yourchoiceReducer, bindSelection } from 'yourchoice-redux'
 
@@ -137,13 +148,15 @@ const store = createStore(combineReducers({
     // ... other reducers
     yourchoice: pluggedReducer
 }))
-```
 
+
+/*
 ###  use custom selector and action sniffer for updates of selectable items
 
 list of selectable items is part of a custom action 
+*/
 
-```js
+
 import { createStore, combineReducers } from 'redux'
 import { reducer as yourchoiceReducer, bindSelection } from 'yourchoice-redux'
 
@@ -172,14 +185,16 @@ const pluggedReducer =  yourchoiceReducer.plugin(updateSelectableItemsReducerFac
     
 // add pluggedReducer to store
 
-```
 
+
+/*
 ### use case: plugged reducer requires top-level state scope
 
 that's not possible with the plugin reducer concept, but it is easy to achieve by just adding another 
    reducer that is calling the  yourchoice reducer at the right place
-  
-```js
+*/
+
+
 import { createStore, combineReducers } from 'redux'
 import { reducer as yourchoiceReducer, bindSelection } from 'yourchoice-redux'
 
@@ -212,20 +227,24 @@ const actionSnifferReducer =  updateSelectableItemsReducerFactory(
 
 // add actionSnifferReducer and yourchoice reducer to your store
 
-```
+
+/*
        `
 ### proposal for a state shifter factory, not part of yourchoice
 
-```js
+*/
+
 // generic state shifter reducer for a immutable js store
 const shiftState = (statePath, reducer) => (state, action) => {
     state.updateIn(statePath, (subState) => reducer(subState, action))
 }
-```
 
+
+/*
 the above use use case can be implemented like this
+*/
 
-```js
+
        
 const shiftedReducer = shiftState(['somewhere', 'yourchoice'], yourchoiceReducer)
 
@@ -245,5 +264,5 @@ const actionSnifferReducer =  updateSelectableItemsReducerFactory(
 
 // add actionSnifferReducer and  yourchoiceReducer to store
 
-```
+
 
