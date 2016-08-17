@@ -12,8 +12,7 @@ const rangeToActionCreator = curry((selectionName, itemId) => ({
 }))
 
 const rangeToReducer = ({ itemId }, currentSelection) => {
-  assert(itemId, `No item id ('${itemId}') to range to`)
-
+  assert(itemId, 'No item id to range to')
   return rangeTo(itemId, currentSelection)
 }
 
