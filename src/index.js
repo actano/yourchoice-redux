@@ -6,6 +6,7 @@ import { replaceActionCreator as replace } from './replace'
 import { toggleActionCreator as toggle } from './toggle'
 import * as actionTypes from './actionTypes'
 import reducer from './reducer'
+import * as selectors from './selectors'
 
 const actions = {
   setItems,
@@ -20,4 +21,5 @@ export {
   actions,
   actionTypes,
   reducer,
+  selectors,
 }
