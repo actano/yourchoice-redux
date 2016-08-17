@@ -1,3 +1,4 @@
+import { setItemsActionCreator as setItems } from './setItems'
 import { rangeToActionCreator as rangeTo } from './rangeTo'
 import { removeActionCreator as remove } from './remove'
 import { removeAllActionCreator as removeAll } from './removeAll'
@@ -7,6 +8,7 @@ import * as actionTypes from './actionTypes'
 import reducer from './reducer'
 
 const actions = {
+  setItems,
   rangeTo,
   remove,
   removeAll,

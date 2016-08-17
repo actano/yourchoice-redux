@@ -7,12 +7,14 @@ import {
 import { mapValues } from 'lodash'
 import { init, setItems } from 'yourchoice'
 
+import { setItemsReducer } from './setItems'
 import { rangeToReducer } from './rangeTo'
 import { removeReducer } from './remove'
 import { removeAllReducer } from './removeAll'
 import { replaceReducer } from './replace'
 import { toggleReducer } from './toggle'
 import {
+  SET_ITEMS,
   RANGE_TO,
   REMOVE,
   REMOVE_ALL,
@@ -26,6 +28,7 @@ const reducerMap = {
   [REMOVE_ALL]: removeAllReducer,
   [REPLACE]: replaceReducer,
   [TOGGLE]: toggleReducer,
+  [SET_ITEMS]: setItemsReducer,
 }
 
 const reducer = curry((getSelectionMap, action, oldState) => {
