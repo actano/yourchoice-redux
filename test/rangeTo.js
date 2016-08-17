@@ -20,18 +20,17 @@ describe('rangeTo', () => {
 
   describe('reducer', () => {
     it('should rangeTo a selectionA', () => {
-      const getSelectionMap = {
-        selectionA: () => ['itemA', 'itemB', 'itemC'],
-      }
-
       const action = boundRangeTo('itemA')
-      const state = reducer(getSelectionMap, action, undefined)
+      const initialState = {
+        selectionA: setItems(['itemA', 'itemB', 'itemC'], init()),
+      }
+      const state = reducer(action, initialState)
 
       const expectedState = flow(
-                init,
-                setItems(['itemA', 'itemB', 'itemC']),
-                rangeTo('itemA')
-            )()
+        init,
+        setItems(['itemA', 'itemB', 'itemC']),
+        rangeTo('itemA')
+      )()
 
       expect(state.selectionA).to.deep.equal(expectedState)
     })

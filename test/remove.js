@@ -21,12 +21,11 @@ describe('remove', () => {
 
   describe('reducer', () => {
     it('should remove item from selection on empty state', () => {
-      const getSelectionMap = {
-        selectionA: () => ['itemA', 'itemB', 'itemC'],
-      }
-
       const action = boundRemove('itemA')
-      const state = reducer(getSelectionMap, action, undefined)
+      const initialState = {
+        selectionA: setItems(['itemA', 'itemB', 'itemC'], init()),
+      }
+      const state = reducer(action, initialState)
 
       const expectedState = flow(
                 init,
@@ -38,41 +37,19 @@ describe('remove', () => {
     })
 
     it('should remove item from selection', () => {
-      const initialState = { selectionA: flow(
-                init,
-                setItems(['itemA', 'itemB', 'itemC']),
-                setSelection(['itemC', 'itemB'])
-            )() }
-      const getSelectionMap = {
-        selectionA: () => ['itemA', 'itemB', 'itemC'],
+      const initialState = {
+        selectionA: flow(
+          init,
+          setItems(['itemA', 'itemB', 'itemC']),
+          setSelection(['itemC', 'itemB'])
+        )(),
       }
 
       const action = boundRemove('itemB')
-      const state = reducer(getSelectionMap, action, initialState)
+      const state = reducer(action, initialState)
 
       const expectedState =
                 remove('itemB', initialState.selectionA)
-
-      expect(state.selectionA).to.deep.equal(expectedState)
-    })
-
-    it('should update list of items and then update selection', () => {
-      const initialState = { selectionA: flow(
-                init,
-                setItems(['itemA', 'itemB', 'itemC', 'itemD']),
-                setSelection(['itemC', 'itemB'])
-            )() }
-      const getSelectionMap = {
-        selectionA: () => ['itemA', 'itemB', 'itemC'],
-      }
-
-      const action = boundRemove('itemD')
-      const state = reducer(getSelectionMap, action, initialState)
-
-      const expectedState = flow(
-                setItems(['itemA', 'itemB', 'itemC']),
-                remove('itemD')
-            )(initialState.selectionA)
 
       expect(state.selectionA).to.deep.equal(expectedState)
     })

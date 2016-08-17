@@ -21,33 +21,29 @@ describe('toggle', () => {
 
   describe('reducer', () => {
     it('should toggle unselected tree row to be selected', () => {
-      const items = ['rowA', 'rowB', 'rowC']
-      const initialState = { selectionA: flow(
-                init,
-                setItems(items),
-                setSelection(['rowB', 'rowC'])
-            )() }
-      const action = boundToggle('rowA')
-      const getSelectionMap = {
-        selectionA: () => items,
+      const initialState = {
+        selectionA: flow(
+            init,
+            setItems(['rowA', 'rowB', 'rowC']),
+            setSelection(['rowB', 'rowC'])
+        )(),
       }
-      const state = reducer(getSelectionMap, action, initialState)
+      const action = boundToggle('rowA')
+      const state = reducer(action, initialState)
 
       expect(state.selectionA).to.deep.equal(toggle('rowA', initialState.selectionA))
     })
 
     it('should toggle selected tree row to be unselected', () => {
-      const items = ['rowA', 'rowB', 'rowC']
-      const initialState = { selectionA: flow(
-                init,
-                setItems(items),
-                setSelection(['rowA', 'rowB', 'rowC'])
-            )() }
-      const action = boundToggle('rowA')
-      const getSelectionMap = {
-        selectionA: () => items,
+      const initialState = {
+        selectionA: flow(
+          init,
+          setItems(['rowA', 'rowB', 'rowC']),
+          setSelection(['rowA', 'rowB', 'rowC'])
+        )(),
       }
-      const state = reducer(getSelectionMap, action, initialState)
+      const action = boundToggle('rowA')
+      const state = reducer(action, initialState)
 
       expect(state.selectionA).to.deep.equal(toggle('rowA', initialState.selectionA))
     })

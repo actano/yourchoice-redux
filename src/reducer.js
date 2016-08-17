@@ -1,11 +1,10 @@
 import {
   curry,
-  flow,
   has,
   update,
+  set,
 } from 'lodash/fp'
-import { mapValues } from 'lodash'
-import { init, setItems } from 'yourchoice'
+import { init } from 'yourchoice'
 
 import { setItemsReducer } from './setItems'
 import { rangeToReducer } from './rangeTo'
@@ -31,29 +30,24 @@ const reducerMap = {
   [SET_ITEMS]: setItemsReducer,
 }
 
-const reducer = curry((getSelectionMap, action, oldState) => {
-  let state = oldState
-  if (!state) {
-    state = mapValues(getSelectionMap, () => init())
-  }
-  if (action.error || !action.payload) {
-    return state
+const reducer = curry((action, state = {}) => {
+  let nextState = state
+  if (action.error || !action.payload || !action.payload.selectionName) {
+    return nextState
   }
   const selectionName = action.payload.selectionName
+  if (!(selectionName in nextState)) {
+    nextState = set(selectionName, init(), nextState)
+  }
 
-  if (has(action.type, reducerMap) && has(selectionName, getSelectionMap)) {
-    const selectableItems = getSelectionMap[selectionName]()
-
+  if (has(action.type, reducerMap)) {
     return update(
       selectionName,
-      flow(
-        setItems(selectableItems),
-        curry(reducerMap[action.type])(action.payload)
-      ),
-      state || {}
+      curry(reducerMap[action.type])(action.payload),
+      nextState
     )
   }
-  return state
+  return nextState
 })
 
 export default reducer

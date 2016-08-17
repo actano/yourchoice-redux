@@ -20,42 +20,13 @@ describe('replace', () => {
   })
 
   describe('reducer', () => {
-    let initialState = null
-
-    beforeEach(() => {
-      initialState = {
-        selectionA: flow(
-                    init,
-                    setItems(['itemA', 'itemB', 'itemC']),
-                    setSelection(['itemC', 'itemB'])
-                )(),
-      }
-    })
-
-    it('should replace empty state with selection', () => {
-      const getSelectionMap = {
-        selectionA: () => [],
-      }
-
-      const action = boundReplace('itemA')
-      const state = reducer(getSelectionMap, action, undefined)
-
-      const expectedState = flow(
-                init,
-                setItems([]),
-                replace('itemA')
-            )()
-
-      expect(state.selectionA).to.deep.equal(expectedState)
-    })
-
     it('should replace existing selection', () => {
-      const getSelectionMap = {
-        selectionA: () => ['itemA', 'itemB', 'itemC'],
+      const initialState = {
+        selectionA: setItems(['itemA', 'itemB', 'itemC'], init()),
       }
 
       const action = boundReplace('itemA')
-      const state = reducer(getSelectionMap, action, initialState)
+      const state = reducer(action, initialState)
 
       const expectedState =
                 replace('itemA', initialState.selectionA)
@@ -64,12 +35,12 @@ describe('replace', () => {
     })
 
     it('should update list of items and then update selection', () => {
-      const getSelectionMap = {
-        selectionA: () => ['itemA', 'itemB', 'itemC', 'itemD'],
+      const initialState = {
+        selectionA: setItems(['itemA', 'itemB', 'itemC', 'itemD'], init()),
       }
 
       const action = boundReplace('itemD')
-      const state = reducer(getSelectionMap, action, initialState)
+      const state = reducer(action, initialState)
 
       const expectedState = flow(
                 setItems(['itemA', 'itemB', 'itemC', 'itemD']),
