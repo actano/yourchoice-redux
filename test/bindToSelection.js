@@ -6,6 +6,7 @@ describe('bindToSelection', () => {
   it('should add selectionName to payload of actions', () => {
     const boundYourchoice = bindToSelection('selectionA')
     const testAction = boundYourchoice.actions.removeAll()
+
     expect(testAction).to.have.deep.property('payload.selectionName', 'selectionA')
   })
 
