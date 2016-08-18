@@ -7,6 +7,7 @@ import { toggleActionCreator as toggle } from './toggle'
 import * as actionTypes from './actionTypes'
 import reducer from './reducer'
 import * as selectors from './selectors'
+import _bindToSelection from './bindToSelection'
 
 const actions = {
   setItems,
@@ -17,9 +18,11 @@ const actions = {
   toggle,
 }
 
+const bindToSelection = _bindToSelection(actions, selectors)
+
 export {
-  actions,
   actionTypes,
   reducer,
   selectors,
+  bindToSelection,
 }
