@@ -8,7 +8,11 @@ const _bindSelector = curry((selectionName, selector) =>
   )
 )
 
-const bindToSelection = curry((actions, selectors, selectionName) => {
+const bindToSelection = (actions, selectors) => (_selectionName) => {
+  let selectionName = _selectionName
+  if (!selectionName) {
+    selectionName = 'selection'
+  }
   const boundActions = mapValues(
     (actionCreator) => bind(actionCreator, null, selectionName),
     actions
@@ -21,6 +25,6 @@ const bindToSelection = curry((actions, selectors, selectionName) => {
     actions: boundActions,
     selectors: boundSelectors,
   }
-})
+}
 
 export default bindToSelection
