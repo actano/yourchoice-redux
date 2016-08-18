@@ -1,6 +1,7 @@
 import { expect } from 'chai'
-import { bindToSelection } from '../src'
 import { init, setItems } from 'yourchoice'
+
+import { bindToSelection } from '../src'
 
 describe('bindToSelection', () => {
   it('should add selectionName to payload of actions', () => {

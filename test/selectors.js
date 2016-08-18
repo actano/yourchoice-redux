@@ -1,7 +1,5 @@
 import { expect } from 'chai'
 import flow from 'lodash/flow'
-
-import * as selectors from '../src/selectors'
 import {
   init,
   setItems,
@@ -12,6 +10,8 @@ import {
   getChangedDeselection,
   getItems,
 } from 'yourchoice'
+
+import * as selectors from '../src/selectors'
 
 describe('selectors', () => {
   let initialState = undefined
