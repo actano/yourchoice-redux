@@ -14,7 +14,7 @@ import {
 import * as selectors from '../src/selectors'
 
 describe('selectors', () => {
-  let initialState = undefined
+  let initialState = null
 
   beforeEach(() => {
     initialState = {
