@@ -1,15 +1,14 @@
 import assert from 'assert'
-import { curry } from 'lodash/fp'
 import { rangeTo } from 'yourchoice'
 import { RANGE_TO } from './actionTypes'
 
-const rangeToActionCreator = curry((selectionName, itemId) => ({
+const rangeToActionCreator = (selectionName, itemId) => ({
   type: RANGE_TO,
   payload: {
     selectionName,
     itemId,
   },
-}))
+})
 
 const rangeToReducer = ({ itemId }, currentSelection) => {
   assert(itemId, 'No item id to range to')
