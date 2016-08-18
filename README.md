@@ -152,15 +152,15 @@ Consider using a store middleware or saga to do this.
 
 ### actions.replace(item) : Action
 
-Replaces the current selection with the given `item`. Also defines this item as the starting point for a subsequent [`rangeTo()`](#rangetoitem--action) selection. This is equivalent to a simple click by the user in a file manager.
+Replaces the current selection with the given `item`. Also defines this item as the starting point for a subsequent [`rangeTo()`](#actionsrangeto--action) selection. This is equivalent to a simple click by the user in a file manager.
 
 ### actions.toggle(item) : Action
 
-Adds or removes the given `item` to/from the selection. Other currently selected items are not affected. Also defines this item as the starting point for a subsequent [`rangeTo()`](#rangetoitem--action) selection if it is added to the selection. This is equivalent to an alt+click (cmd+click) by the user in a file manager.
+Adds or removes the given `item` to/from the selection. Other currently selected items are not affected. Also defines this item as the starting point for a subsequent [`rangeTo()`](#actionsrangeto--action) selection if it is added to the selection. This is equivalent to an alt+click (cmd+click) by the user in a file manager.
 
 ### actions.rangeTo() : Action
 
-Selects a range of items usally starting from the previously [toggled](#toggleitem--action) or [replaced](#replaceitem--action) item and ending at the given `item`. This is equivalent to a shift+click by the user in a file manager.
+Selects a range of items usally starting from the previously [toggled](#actionstoggleitem--action) or [replaced](#actionsreplaceitem--action) item and ending at the given `item`. This is equivalent to a shift+click by the user in a file manager.
 
 ### actions.setSelection(items) : Action
 
@@ -184,8 +184,8 @@ Returns an array containing the currently selected items.
 
 ### selectors.getChangedSelection(state) : Array
 
-Returns an array containing those items that have been added to the selection by the directly preceding operation. E.g. calling this after a call to [`rangeTo()`](#rangetoitem--action) will return all the items that have been added to the selection by this operation.
+Returns an array containing those items that have been added to the selection by the directly preceding operation. E.g. calling this after a call to [`rangeTo()`](#actionsrangeto--action) will return all the items that have been added to the selection by this operation.
 
 ### selectors.getChangedDeselection(state) : Array
 
-Returns an array containing those items that have been removed from the selection by the directly preceding operation. E.g. calling this after a call to [`rangeTo()`](#rangetoitem--action) will return all the items that have been removed from the selection by this operation.
+Returns an array containing those items that have been removed from the selection by the directly preceding operation. E.g. calling this after a call to [`rangeTo()`](#actionsrangeto--action) will return all the items that have been removed from the selection by this operation.
