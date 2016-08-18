@@ -9,11 +9,30 @@
 
 Redux wrapper for [yourchoice](https://github.com/actano/yourchoice).
 
-## How to use
+## Installing
+
+### With npm
+
+```javascript
+npm install yourchoice-redux --save
+```
+
+Since yourchoice-redux is a frontend module, you will need a module bundler like webpack or browserify.
+
+**Caution:** Yourchoice Redux uses `Symbol.iterator` which is not yet supported by all environments. You can polyfill it with `core-js`
+
+```javascript
+if (!window.Symbol) {
+  require('core-js/es6/symbol')
+}
+```
+
+
+## Usage
 
 ### Reducer
 
-Yourchoice provides a reducer with a standard signature `(state, action) => nextState`.
+YourChoice Redux provides a reducer with a standard signature `(state, action) => nextState`.
 
 ```js
 import {createStore, combineReducers} from 'redux'
@@ -109,3 +128,64 @@ const getSelectedUsers = (state) => userSelection.selectors.getSelectedItems(sta
 const teamSelection = bindToSelection('teams');
 ...
 ```
+
+## API
+
+### reducer(state, action)
+
+Standard signature reducer, which can be added anywhere in your reducer hierarchy.
+
+### bindToSelection(selectionName = 'selection')
+
+Returns an object containing all the following action creators and selectors, bound to the given selection name.
+
+### actions.setItems(selectableItems) : Action
+
+Changes the current set of items that can be selected/deselected.
+
+The `selectableItems` can be **any [javascript iterable](http://www.ecma-international.org/ecma-262/6.0/#sec-iterable-interface)**. 
+This enables yourchoice to operate on any data structure. Native data types such as `Array` or `Map` implement the iterable protocol.
+
+This action is usually dispatched initially before any selection is performed. This action should be called in order to update the state when selectable items have been added or removed. For example, if some of the currently selected items are not present in the given `selectableItems` anymore, then these items will be automatically removed from the current selection.
+
+Consider using a store middleware or saga to do this.
+
+### actions.replace(item) : Action
+
+Replaces the current selection with the given `item`. Also defines this item as the starting point for a subsequent [`rangeTo()`](#rangetoitem--action) selection. This is equivalent to a simple click by the user in a file manager.
+
+### actions.toggle(item) : Action
+
+Adds or removes the given `item` to/from the selection. Other currently selected items are not affected. Also defines this item as the starting point for a subsequent [`rangeTo()`](#rangetoitem--action) selection if it is added to the selection. This is equivalent to an alt+click (cmd+click) by the user in a file manager.
+
+### actions.rangeTo(state) : Action
+
+Selects a range of items usally starting from the previously [toggled](#toggleitem--action) or [replaced](#replaceitem--action) item and ending at the given `item`. This is equivalent to a shift+click by the user in a file manager.
+
+### actions.setSelection(items) : Action
+
+Replaces the current selection with the given `items`.
+
+### actions.remove(items) : Action
+
+Removes the given `items` from the current selection. 
+
+### actions.removeAll() : Action
+
+Removes all items from the current selection.
+
+### selectors.getItems(state) : Array
+
+Returns an array containing all selectable items.
+
+### selectors.getSelection(state) : Array
+
+Returns an array containing the currently selected items.
+
+### selectors.getChangedSelection(state) : Array
+
+Returns an array containing those items that have been added to the selection by the directly preceding operation. E.g. calling this after a call to [`rangeTo()`](#rangetoitem--action) will return all the items that have been added to the selection by this operation.
+
+### selectors.getChangedDeselection(state) : Array
+
+Returns an array containing those items that have been removed from the selection by the directly preceding operation. E.g. calling this after a call to [`rangeTo()`](#rangetoitem--action) will return all the items that have been removed from the selection by this operation.
