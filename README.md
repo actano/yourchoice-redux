@@ -158,7 +158,7 @@ Replaces the current selection with the given `item`. Also defines this item as 
 
 Adds or removes the given `item` to/from the selection. Other currently selected items are not affected. Also defines this item as the starting point for a subsequent [`rangeTo()`](#rangetoitem--action) selection if it is added to the selection. This is equivalent to an alt+click (cmd+click) by the user in a file manager.
 
-### actions.rangeTo(state) : Action
+### actions.rangeTo() : Action
 
 Selects a range of items usally starting from the previously [toggled](#toggleitem--action) or [replaced](#replaceitem--action) item and ending at the given `item`. This is equivalent to a shift+click by the user in a file manager.
 
