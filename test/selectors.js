@@ -10,6 +10,7 @@ import {
   getSelection,
   getChangedSelection,
   getChangedDeselection,
+  getItems,
 } from 'yourchoice'
 
 describe('selectors', () => {
@@ -43,6 +44,13 @@ describe('selectors', () => {
     it('should return the same changed deselection as yourchoice', () => {
       expect(selectors.getChangedDeselection(initialState.selectionA))
         .to.deep.equal(getChangedDeselection(initialState.selectionA))
+    })
+  })
+
+  describe('getItems', () => {
+    it('should return the same selectable items as yourchoice', () => {
+      expect(selectors.getItems(initialState.selectionA))
+        .to.deep.equal(getItems(initialState.selectionA))
     })
   })
 })
