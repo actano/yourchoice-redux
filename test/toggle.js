@@ -2,9 +2,10 @@ import { expect } from 'chai'
 import flow from 'lodash/flow'
 import bind from 'lodash/bind'
 import { init, setItems, toggle, setSelection } from 'yourchoice'
-import { reducer, actions } from '../src'
+import { reducer } from '../src'
+import { toggleActionCreator } from '../src/toggle'
 
-const boundToggle = bind(actions.toggle, null, 'selectionA')
+const boundToggle = bind(toggleActionCreator, null, 'selectionA')
 
 describe('toggle', () => {
   describe('action', () => {

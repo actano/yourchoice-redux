@@ -2,9 +2,10 @@ import { expect } from 'chai'
 import flow from 'lodash/flow'
 import bind from 'lodash/bind'
 import { init, setItems, rangeTo } from 'yourchoice'
-import { reducer, actions } from '../src'
+import { reducer } from '../src'
+import { rangeToActionCreator } from '../src/rangeTo'
 
-const boundRangeTo = bind(actions.rangeTo, null, 'selectionA')
+const boundRangeTo = bind(rangeToActionCreator, null, 'selectionA')
 
 describe('rangeTo', () => {
   describe('action', () => {

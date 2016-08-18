@@ -2,9 +2,10 @@ import { expect } from 'chai'
 import flow from 'lodash/flow'
 import bind from 'lodash/bind'
 import { init, setItems, remove, setSelection } from 'yourchoice'
-import { reducer, actions } from '../src'
+import { reducer } from '../src'
+import { removeActionCreator } from '../src/remove'
 
-const boundRemove = bind(actions.remove, null, 'selectionA')
+const boundRemove = bind(removeActionCreator, null, 'selectionA')
 
 describe('remove', () => {
   describe('action', () => {

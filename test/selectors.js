@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import flow from 'lodash/flow'
 
-import { selectors } from '../src'
+import * as selectors from '../src/selectors'
 import {
   init,
   setItems,
