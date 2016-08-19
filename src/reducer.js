@@ -30,7 +30,7 @@ const reducerMap = {
   [SET_ITEMS]: setItemsReducer,
 }
 
-const reducer = curry((action, state = {}) => {
+const reducer = (state = {}, action) => {
   let nextState = state
   if (action.error || !action.payload || !action.payload.selectionName) {
     return nextState
@@ -48,6 +48,6 @@ const reducer = curry((action, state = {}) => {
     )
   }
   return nextState
-})
+}
 
 export default reducer

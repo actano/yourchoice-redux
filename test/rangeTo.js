@@ -25,7 +25,7 @@ describe('rangeTo', () => {
       const initialState = {
         selectionA: setItems(['itemA', 'itemB', 'itemC'], init()),
       }
-      const state = reducer(action, initialState)
+      const state = reducer(initialState, action)
 
       const expectedState = flow(
         init,

@@ -26,7 +26,7 @@ describe('setItems', () => {
         selectionA: setItems(['itemC'], init()),
       }
 
-      const state = reducer(action, initialState)
+      const state = reducer(initialState, action)
 
       const expectedState = flow(
         init,

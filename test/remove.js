@@ -26,7 +26,7 @@ describe('remove', () => {
       const initialState = {
         selectionA: setItems(['itemA', 'itemB', 'itemC'], init()),
       }
-      const state = reducer(action, initialState)
+      const state = reducer(initialState, action)
 
       const expectedState = flow(
                 init,
@@ -47,7 +47,7 @@ describe('remove', () => {
       }
 
       const action = boundRemove('itemB')
-      const state = reducer(action, initialState)
+      const state = reducer(initialState, action)
 
       const expectedState =
                 remove('itemB', initialState.selectionA)

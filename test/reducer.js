@@ -9,7 +9,7 @@ describe('reducer', () => {
     const action = {
       error: 'testError',
     }
-    const state = reducer(action, oldState)
+    const state = reducer(oldState, action)
     expect(state).to.deep.equal(oldState)
   })
 
@@ -18,7 +18,7 @@ describe('reducer', () => {
     const action = {
       type: 'UNKNOWN_TYPE',
     }
-    const state = reducer(action, oldState)
+    const state = reducer(oldState, action)
     expect(state).to.deep.equal({})
   })
 
@@ -27,7 +27,7 @@ describe('reducer', () => {
     const action = {
       type: 'UNKNOWN_TYPE',
     }
-    const state = reducer(action, oldState)
+    const state = reducer(oldState, action)
     expect(state).to.deep.equal(oldState)
   })
 
@@ -39,7 +39,7 @@ describe('reducer', () => {
         selectionName: 'newSelection',
       },
     }
-    const state = reducer(action, oldState)
+    const state = reducer(oldState, action)
     expect(state).to.deep.equal({
       newSelection: init(),
     })
@@ -51,7 +51,7 @@ describe('reducer', () => {
       type: RANGE_TO,
     }
     const reducerCall = () => {
-      reducer({ selectionA: () => {} }, action, oldState)
+      reducer(oldState, action)
     }
     expect(reducerCall).to.not.throw(Error)
   })

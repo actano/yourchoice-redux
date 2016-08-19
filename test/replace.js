@@ -27,7 +27,7 @@ describe('replace', () => {
       }
 
       const action = boundReplace('itemA')
-      const state = reducer(action, initialState)
+      const state = reducer(initialState, action)
 
       const expectedState =
                 replace('itemA', initialState.selectionA)
@@ -41,7 +41,7 @@ describe('replace', () => {
       }
 
       const action = boundReplace('itemD')
-      const state = reducer(action, initialState)
+      const state = reducer(initialState, action)
 
       const expectedState = flow(
                 setItems(['itemA', 'itemB', 'itemC', 'itemD']),

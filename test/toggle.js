@@ -30,7 +30,7 @@ describe('toggle', () => {
         )(),
       }
       const action = boundToggle('rowA')
-      const state = reducer(action, initialState)
+      const state = reducer(initialState, action)
 
       expect(state.selectionA).to.deep.equal(toggle('rowA', initialState.selectionA))
     })
@@ -44,7 +44,7 @@ describe('toggle', () => {
         )(),
       }
       const action = boundToggle('rowA')
-      const state = reducer(action, initialState)
+      const state = reducer(initialState, action)
 
       expect(state.selectionA).to.deep.equal(toggle('rowA', initialState.selectionA))
     })
