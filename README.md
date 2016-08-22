@@ -131,17 +131,89 @@ const teamSelection = bindToSelection('teams');
 ```
 
 ## API
+* <a href="#_reducer"><code>reducer(state, action)</code></a>
+* <a href="#_bindToSelection"><code>bindToSelection(selectionName)</code></a>
+* <a href="#_action_rangeTo">action creator: <code>rangeTo(toItem)</code></a>
+* <a href="#_action_remove">action creator: <code>remove(itemsToRemove)</code></a>
+* <a href="#_action_removeAll">action creator: <code>removeAll()</code></a>
+* <a href="#_action_replace">action creator: <code>replace(item)</code></a>
+* <a href="#_action_setItems">action creator: <code>setItems(selectableItems)</code></a>
+* <a href="#_action_setSelection">action creator: <code>setSelection(selectedItems)</code></a>
+* <a href="#_action_toggle">action creator: <code>toggle(item)</code></a>
+* <a href="#_selector_getChangedSelection">selector: <code>getChangedSelection(state)</code></a>
+* <a href="#_selector_getChangedDeselection">selector: <code>getChangedDeselection(state)</code></a>
+* <a href="#_selector_getItems">selector: <code>getItems(state)</code></a>
+* <a href="#_selector_getSelection">selector: <code>getSelection(state)</code></a>
 
-### reducer(state, action)
+<h3>common types used in API specification</h3>
+```javascript
+type State = any;
+type Item = any;
+type Action = any;
+```
 
+<h3 id="_reducer">reducer</h3>
+```javascript
+reducer(state: State, action: Action): State
+```
 Standard signature reducer, which can be added anywhere in your reducer hierarchy.
 
-### bindToSelection(selectionName = 'selection')
+<h3 id="_bindToSelection">bindToSelection</h3>
+```javascript
+bindToSelection(selectionName: string = 'selection'): BoundAPI
 
-Returns an object containing all the following action creators and selectors, bound to the given selection name.
+type BoundAPI = {
+    actions: ActionCreators;
+    selectors: Selectors;
+};
 
-### actions.setItems(selectableItems) : Action
+type ActionCreators = {
+    rangeTo: (item: Item) => Action;
+    remove: (items: Item[]) => Action;
+    removeAll: () => Action;
+    replace: (item: Item) => Action;
+    setItems: (items: Item[]) => Action;
+    setSelection: (items: Item[]) => Action;
+    toggle: (item: Item) => Action;
+};
 
+type Selectors = {
+    getChangedSelection: (state: State) => Item[];
+    getChangedDeselection: (state: State) => Item[];
+    getItems: (state: State) => Item[];
+    getSelection: (state: State) => Item[];
+};
+```
+`bindToSelection` returns an object containing all the following action creators and selectors, bound to the given selection name.
+
+<h3 id="_action_rangeTo">action creator: rangeTo</h3>
+```javascript
+rangeTo(item: Item): Action
+```
+Selects a range of items usally starting from the previously [toggled](#actionstoggleitem--action) or [replaced](#actionsreplaceitem--action) item and ending at the given `item`. This is equivalent to a shift+click by the user in a file manager.
+
+<h3 id="_action_remove">action creator: remove</h3>
+```javascript
+remove(items: Item[]): Action
+```
+Removes the given `items` from the current selection. 
+
+<h3 id="_action_removeAll">action creator: removeAll</h3>
+```javascript
+removeAll(): Action
+```
+Removes all items from the current selection.
+
+<h3 id="_action_replace">action creator: replace</h3>
+```javascript
+replace(item: Item): Action
+```
+Replaces the current selection with the given `item`. Also defines this item as the starting point for a subsequent [`rangeTo()`](#actionsrangeto--action) selection. This is equivalent to a simple click by the user in a file manager.
+
+<h3 id="_action_setItems">action creator: setItems</h3>
+```javascript
+setItems(selectableItems: Item[]): Action;
+```
 Changes the current set of items that can be selected/deselected.
 
 The `selectableItems` can be **any [javascript iterable](http://www.ecma-international.org/ecma-262/6.0/#sec-iterable-interface)**. 
@@ -151,42 +223,39 @@ This action is usually dispatched initially before any selection is performed. T
 
 Consider using a store middleware or saga to do this.
 
-### actions.replace(item) : Action
-
-Replaces the current selection with the given `item`. Also defines this item as the starting point for a subsequent [`rangeTo()`](#actionsrangeto--action) selection. This is equivalent to a simple click by the user in a file manager.
-
-### actions.toggle(item) : Action
-
-Adds or removes the given `item` to/from the selection. Other currently selected items are not affected. Also defines this item as the starting point for a subsequent [`rangeTo()`](#actionsrangeto--action) selection if it is added to the selection. This is equivalent to an alt+click (cmd+click) by the user in a file manager.
-
-### actions.rangeTo() : Action
-
-Selects a range of items usally starting from the previously [toggled](#actionstoggleitem--action) or [replaced](#actionsreplaceitem--action) item and ending at the given `item`. This is equivalent to a shift+click by the user in a file manager.
-
-### actions.setSelection(items) : Action
-
+<h3 id="_action_setSelection">action creator: setSelection</h3>
+```javascript
+setSelection(selectedItems: Item[]): Action
+```
 Replaces the current selection with the given `items`.
 
-### actions.remove(items) : Action
+<h3 id="_action_toggle">action creator: toggle</h3>
+```javascript
+toggle(item: Item): Action
+```
+Adds or removes the given `item` to/from the selection. Other currently selected items are not affected. Also defines this item as the starting point for a subsequent [`rangeTo()`](#actionsrangeto--action) selection if it is added to the selection. This is equivalent to an alt+click (cmd+click) by the user in a file manager.
 
-Removes the given `items` from the current selection. 
-
-### actions.removeAll() : Action
-
-Removes all items from the current selection.
-
-### selectors.getItems(state) : Array
-
+<h3 id="_selector_getItems">selector: getItems</h3>
+```javascript
+getItems(state: State): Item[]
+```
 Returns an array containing all selectable items.
 
-### selectors.getSelection(state) : Array
+<h3 id="_selector_getSelection">selector: getSelection</h3>
+```javascript
+getSelection(state: State): Item[]
 
+```
 Returns an array containing the currently selected items.
 
-### selectors.getChangedSelection(state) : Array
-
+<h3 id="_selector_getChangedSelection">selector: getChangedSelection</h3>
+```javascript
+getChangedSelection(state: State): Item[]
+```
 Returns an array containing those items that have been added to the selection by the directly preceding operation. E.g. calling this after a call to [`rangeTo()`](#actionsrangeto--action) will return all the items that have been added to the selection by this operation.
 
-### selectors.getChangedDeselection(state) : Array
-
+<h3 id="_selector_getChangedDeselection">selector: getChangedDeselection</h3>
+```javascript
+getChangedDeselection(state: State): Item[]
+```
 Returns an array containing those items that have been removed from the selection by the directly preceding operation. E.g. calling this after a call to [`rangeTo()`](#actionsrangeto--action) will return all the items that have been removed from the selection by this operation.
