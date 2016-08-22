@@ -23,6 +23,5 @@ const bindToSelection = _bindToSelection(actions, selectors)
 export {
   actionTypes,
   reducer,
-  selectors,
   bindToSelection,
 }
