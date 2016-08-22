@@ -24,9 +24,9 @@ describe('toggle', () => {
     it('should toggle unselected tree row to be selected', () => {
       const initialState = {
         selectionA: flow(
-            init,
-            setItems(['rowA', 'rowB', 'rowC']),
-            setSelection(['rowB', 'rowC'])
+          init,
+          setItems(['rowA', 'rowB', 'rowC']),
+          setSelection(['rowB', 'rowC'])
         )(),
       }
       const action = boundToggle('rowA')

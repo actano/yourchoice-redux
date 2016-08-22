@@ -30,7 +30,7 @@ describe('replace', () => {
       const state = reducer(initialState, action)
 
       const expectedState =
-                replace('itemA', initialState.selectionA)
+        replace('itemA', initialState.selectionA)
 
       expect(state.selectionA).to.deep.equal(expectedState)
     })
@@ -44,9 +44,9 @@ describe('replace', () => {
       const state = reducer(initialState, action)
 
       const expectedState = flow(
-                setItems(['itemA', 'itemB', 'itemC', 'itemD']),
-                replace('itemD')
-            )(initialState.selectionA)
+        setItems(['itemA', 'itemB', 'itemC', 'itemD']),
+        replace('itemD')
+      )(initialState.selectionA)
 
       expect(state.selectionA).to.deep.equal(expectedState)
     })

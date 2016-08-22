@@ -29,10 +29,10 @@ describe('remove', () => {
       const state = reducer(initialState, action)
 
       const expectedState = flow(
-                init,
-                setItems(['itemA', 'itemB', 'itemC']),
-                remove('itemA')
-            )()
+        init,
+        setItems(['itemA', 'itemB', 'itemC']),
+        remove('itemA')
+      )()
 
       expect(state.selectionA).to.deep.equal(expectedState)
     })
@@ -50,7 +50,7 @@ describe('remove', () => {
       const state = reducer(initialState, action)
 
       const expectedState =
-                remove('itemB', initialState.selectionA)
+        remove('itemB', initialState.selectionA)
 
       expect(state.selectionA).to.deep.equal(expectedState)
     })
