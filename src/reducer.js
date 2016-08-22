@@ -35,7 +35,7 @@ const reducerMap = {
 
 const reducer = (state = {}, action) => {
   let nextState = state
-  if (action.error || !action.payload || !action.payload.selectionName) {
+  if (!action || action.error || !action.payload || !action.payload.selectionName) {
     return nextState
   }
   const selectionName = action.payload.selectionName
