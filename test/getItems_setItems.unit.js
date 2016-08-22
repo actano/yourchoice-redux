@@ -8,7 +8,7 @@ describe('getItems/setItems - get/update the list of selectable items', () => {
   before(() => {
     ({
       actions: { setItems },
-      selectors: { getItems }
+      selectors: { getItems },
     } = bindToSelection('my-selection'))
   })
 
