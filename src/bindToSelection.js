@@ -8,11 +8,7 @@ const _bindSelector = curry((selectionName, selector) =>
   )
 )
 
-const bindToSelection = (actions, selectors) => (_selectionName) => {
-  let selectionName = _selectionName
-  if (!selectionName) {
-    selectionName = 'selection'
-  }
+const bindToSelection = (actions, selectors) => (selectionName = 'selection') => {
   const boundActions = mapValues(
     (actionCreator) => bind(actionCreator, null, selectionName),
     actions
