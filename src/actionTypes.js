@@ -1,4 +1,5 @@
 export const SET_ITEMS = 'yourchoice-redux/SET_ITEMS'
+export const SET_SELECTION = 'yourchoice-redux/SET_SELECTION'
 export const RANGE_TO = 'yourchoice-redux/RANGE_TO'
 export const REMOVE = 'yourchoice-redux/REMOVE'
 export const REMOVE_ALL = 'yourchoice-redux/REMOVE_ALL'

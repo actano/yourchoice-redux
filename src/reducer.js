@@ -11,6 +11,7 @@ import { rangeToReducer } from './rangeTo'
 import { removeReducer } from './remove'
 import { removeAllReducer } from './removeAll'
 import { replaceReducer } from './replace'
+import { setSelectionReducer } from './setSelection'
 import { toggleReducer } from './toggle'
 import {
   SET_ITEMS,
@@ -18,6 +19,7 @@ import {
   REMOVE,
   REMOVE_ALL,
   REPLACE,
+  SET_SELECTION,
   TOGGLE,
 } from './actionTypes'
 
@@ -27,6 +29,7 @@ const reducerMap = {
   [REMOVE_ALL]: removeAllReducer,
   [REPLACE]: replaceReducer,
   [TOGGLE]: toggleReducer,
+  [SET_SELECTION]: setSelectionReducer,
   [SET_ITEMS]: setItemsReducer,
 }
 
