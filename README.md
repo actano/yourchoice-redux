@@ -55,17 +55,18 @@ import {bindToSelection} from 'yourchoice-redux'
 
 // bind yourchoice to specific selection name
 // if the selectionName is omitted it defaults to 'selection'
-const mySelection = bindToSelection('my-selection');    /*
+const mySelection = bindToSelection('my-selection');
+/*
 returns {
     actions: {
         setItems,
-        toggle,
         rangeTo,
+        remove,
         ...
     },
     selectors: {
-        getSelectableItems
-        getSelectedItems,
+        getSelection,
+        getChangedSelection,
         ...
     }
 }
@@ -78,7 +79,7 @@ Selectors need to be given the substate the reducer acts on.
 
 ```js
 export {
-    getSelectableItems: (state) => mySelection.selectors.getSelectableItems(state.yourchoice)
+    getItems: (state) => mySelection.selectors.getItems(state.yourchoice)
 }
 ```
 
@@ -99,13 +100,13 @@ const store = createStore(combineReducers({
 // connect to ReactComponent
 const mapStateToProps = (state) => {
   return {
-    myList: selection.selectors.getSelectableItems(state.yourchoice),
-    mySelection: selection.selectors.getSelectedItems(state.yourchoice)
+    myList: selection.selectors.getItems(state.yourchoice),
+    mySelection: selection.selectors.getSelection(state.yourchoice)
   }
 }
 
 // dipatch actions
-store.dispatch(yourchoice.actions.setItems([1, 2, 5, 8]))
+store.dispatch(selection.actions.setItems([1, 2, 5, 8]))
 store.dispatch(selection.actions.replace(2))
 
 ```
@@ -122,7 +123,7 @@ store.dispatch(userSelection.actions.setItems(userList));
 store.dispatch(userSelection.actions.replace('user-id-1'));
 ...
 // get selector
-const getSelectedUsers = (state) => userSelection.selectors.getSelectedItems(state.yourchoice)
+const getSelectedUsers = (state) => userSelection.selectors.getSelection(state.yourchoice)
 
 // get action creators and selectors bound to selection name 'teams'
 const teamSelection = bindToSelection('teams');
