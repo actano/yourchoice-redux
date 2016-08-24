@@ -6,8 +6,8 @@
   "author": "Actano GmbH (https://rplan.com/)",
   "scripts": {
     "clean": "rimraf lib",
-    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha test/**/*.js",
-    "test:watch": "mocha test/**/*.js --watch",
+    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha test/**/*.unit.js",
+    "test:watch": "mocha test/**/*.unit.js --watch",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "build": "babel src --out-dir lib",
     "prepublish": "npm run clean && npm run build",
