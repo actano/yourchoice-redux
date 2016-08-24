@@ -1,4 +1,5 @@
 import { expect } from 'chai'
+import merge from 'lodash/merge'
 import { actionTypes, bindToSelection, reducer } from '../src'
 
 describe('reducer', () => {
@@ -25,13 +26,10 @@ describe('reducer', () => {
   it('should return same state on action of unknown type', () => {
     const { actions: { setItems } } = bindToSelection('my-selection')
 
-    const state1 = reducer(undefined, setItems([]))
+    const unknownAction = modifyActionType(setItems(['A', 'B', 'C']))
 
-    // need to alienate a correct action (than to create a foreign action)
-    // to get 100% coverage on reducer
-    const action = setItems(['A', 'B', 'C'])
-    action.type = 'UNKNOWN_TYPE'
-    const state2 = reducer(state1, action)
+    const state1 = reducer(undefined, setItems([]))
+    const state2 = reducer(state1, unknownAction)
 
     expect(state2).to.equal(state1)
   })
@@ -40,4 +38,13 @@ describe('reducer', () => {
     const action = { type: actionTypes.REPLACE_ALL, payload: {} }
     expect(reducer('any-state', action)).to.equal('any-state')
   })
+
+  function modifyActionType(action) {
+    // need to alienate a correct action (instead of creating a foreign action)
+    // to get 100% coverage on reducer
+
+    return merge({}, action, {
+      type: 'UNKNOWN_TYPE',
+    })
+  }
 })
