@@ -19,6 +19,7 @@ describe('getChangedDeselection - get new selected items', () => {
   it('should return empty list on undefined selection state', () => {
     const state = reducer(undefined, setItems(['A', 'B', 'C']))
     const otherApi = bindToSelection('other-selection')
+
     expect(otherApi.selectors.getChangedDeselection(state)).to.deep.equal([])
   })
 
@@ -26,9 +27,11 @@ describe('getChangedDeselection - get new selected items', () => {
     it('should return same items after modification of previously got item list', () => {
       const state = reducer(undefined, undefined)
       const gotItems = getChangedDeselection(state)
+
       expect(gotItems).to.deep.equal([])
+
       gotItems.unshift('newOne')
-      expect(gotItems).to.deep.equal(['newOne'])
+
       expect(getChangedDeselection(state)).to.deep.equal([])
     })
   })

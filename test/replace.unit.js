@@ -1,4 +1,6 @@
 import { expect } from 'chai'
+import flow from 'lodash/flow'
+import curryReducer from './utils/curryReducer'
 import { bindToSelection, reducer } from '../src'
 
 describe('replace - replace whole selection by single item', () => {
@@ -17,11 +19,16 @@ describe('replace - replace whole selection by single item', () => {
   })
 
   it('should replace selection by given item', () => {
-    const state1 = reducer(undefined, setItems(['A', 'B', 'C']))
-    const state2 = reducer(state1, setSelection(['A', 'C']))
-    const state3 = reducer(state2, replace('C'))
-    expect(getSelection(state3)).to.deep.equal(['C'])
-    expect(getChangedSelection(state3)).to.deep.equal([])
-    expect(getChangedDeselection(state3)).to.deep.equal(['A'])
+    const curriedReducer = curryReducer(reducer)
+
+    const state = flow(
+      curriedReducer(setItems(['A', 'B', 'C'])),
+      curriedReducer(setSelection(['A', 'C'])),
+      curriedReducer(replace('C'))
+    )(undefined)
+
+    expect(getSelection(state)).to.deep.equal(['C'])
+    expect(getChangedSelection(state)).to.deep.equal([])
+    expect(getChangedDeselection(state)).to.deep.equal(['A'])
   })
 })

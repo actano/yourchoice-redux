@@ -1,4 +1,6 @@
 import { expect } from 'chai'
+import flow from 'lodash/flow'
+import curryReducer from './utils/curryReducer'
 import { bindToSelection, reducer } from '../src'
 
 describe('remove - remove items from selection', () => {
@@ -17,11 +19,16 @@ describe('remove - remove items from selection', () => {
   })
 
   it('should remove all given items', () => {
-    const state1 = reducer(undefined, setItems(['A', 'B', 'C', 'D', 'E']))
-    const state2 = reducer(state1, setSelection(['A', 'C', 'D', 'E']))
-    const state3 = reducer(state2, remove(['A', 'D', 'F']))
-    expect(getSelection(state3)).to.have.members(['C', 'E'])
-    expect(getChangedSelection(state3)).to.deep.equal([])
-    expect(getChangedDeselection(state3)).to.have.members(['A', 'D'])
+    const curriedReducer = curryReducer(reducer)
+
+    const state = flow(
+      curriedReducer(setItems(['A', 'B', 'C', 'D', 'E'])),
+      curriedReducer(setSelection(['A', 'C', 'D', 'E'])),
+      curriedReducer(remove(['A', 'D', 'F']))
+    )(undefined)
+
+    expect(getSelection(state)).to.have.members(['C', 'E'])
+    expect(getChangedSelection(state)).to.deep.equal([])
+    expect(getChangedDeselection(state)).to.have.members(['A', 'D'])
   })
 })

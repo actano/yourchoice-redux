@@ -15,11 +15,13 @@ describe('reducer', () => {
     const { actions: { setItems } } = bindToSelection('my-selection')
     const action = setItems(['A', 'B', 'C'])
     action.error = true
+
     expect(reducer('any-state', action)).to.equal('any-state')
   })
 
   it('should return same state on action without payload', () => {
     const action = { type: actionTypes.SET_ITEMS }
+
     expect(reducer('any-state', action)).to.equal('any-state')
   })
 
@@ -36,6 +38,7 @@ describe('reducer', () => {
 
   it('should return same state on action without payload content (no selection binding)', () => {
     const action = { type: actionTypes.REPLACE_ALL, payload: {} }
+
     expect(reducer('any-state', action)).to.equal('any-state')
   })
 
