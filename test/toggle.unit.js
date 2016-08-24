@@ -1,5 +1,4 @@
 import { expect } from 'chai'
-import orderBy from 'lodash/orderBy'
 import { bindToSelection, reducer } from '../src'
 
 describe('toggle - toggle selection of single item', () => {
@@ -21,7 +20,7 @@ describe('toggle - toggle selection of single item', () => {
     const state1 = reducer(undefined, setItems(['A', 'B', 'C']))
     const state2 = reducer(state1, setSelection(['A', 'B', 'C']))
     const state3 = reducer(state2, toggle('B'))
-    expect(orderBy(getSelection(state3))).to.deep.equal(['A', 'C'])
+    expect(getSelection(state3)).to.have.members(['A', 'C'])
     expect(getChangedSelection(state3)).to.deep.equal([])
     expect(getChangedDeselection(state3)).to.deep.equal(['B'])
   })

@@ -1,5 +1,4 @@
 import { expect } from 'chai'
-import orderBy from 'lodash/orderBy'
 import { bindToSelection, reducer } from '../src'
 
 describe('rangeTo - range selection', () => {
@@ -24,8 +23,8 @@ describe('rangeTo - range selection', () => {
     const state4 = reducer(state3, toggle('A'))
     const state5 = reducer(state4, toggle('C'))
     const state6 = reducer(state5, rangeTo('G'))
-    expect(orderBy(getSelection(state6))).to.deep.equal(['A', 'C', 'D', 'E', 'F', 'G', 'I'])
-    expect(orderBy(getChangedSelection(state6))).to.deep.equal(['D', 'F', 'G'])
-    expect(getChangedDeselection(state6)).to.deep.equal([])
+    expect(getSelection(state)).to.have.members(['A', 'C', 'D', 'E', 'F', 'G', 'I'])
+    expect(getChangedSelection(state)).to.have.members(['D', 'F', 'G'])
+    expect(getChangedDeselection(state)).to.have.members([])
   })
 })

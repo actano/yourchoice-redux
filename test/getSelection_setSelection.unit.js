@@ -1,5 +1,4 @@
 import { expect } from 'chai'
-import orderBy from 'lodash/orderBy'
 import { bindToSelection, reducer } from '../src'
 
 describe('getSelection/setSelection - getting / manual setting the set of selected items', () => {
@@ -27,20 +26,20 @@ describe('getSelection/setSelection - getting / manual setting the set of select
   it('should return same items previously set', () => {
     const state1 = reducer(undefined, setItems(['A', 'B', 'C']))
     const state2 = reducer(state1, setSelection(['A', 'C']))
-    expect(orderBy(getSelection(state2))).to.deep.equal(['A', 'C'])
+    expect(getSelection(state2)).to.have.members(['A', 'C'])
   })
 
   it('should replace all previously set items', () => {
     const state1 = reducer(undefined, setItems(['A', 'B', 'C']))
     const state2 = reducer(state1, setSelection(['A', 'C']))
     const state3 = reducer(state2, setSelection(['A', 'B']))
-    expect(orderBy(getSelection(state3))).to.deep.equal(['A', 'B'])
+    expect(getSelection(state3)).to.have.members(['A', 'B'])
   })
 
   it('should only select selectable items', () => {
     const state1 = reducer(undefined, setItems(['A', 'B', 'C']))
     const state2 = reducer(state1, setSelection(['A', 'C', 'D']))
-    expect(orderBy(getSelection(state2))).to.deep.equal(['A', 'C'])
+    expect(getSelection(state2)).to.have.members(['A', 'C'])
   })
 
   it('should remove not selectable items from selection permanently', () => {
@@ -59,7 +58,7 @@ describe('getSelection/setSelection - getting / manual setting the set of select
       const state2 = reducer(state1, setSelection(givenItems))
       givenItems.unshift('B')
       expect(givenItems).to.deep.equal(['B', 'A', 'C'])
-      expect(orderBy(getSelection(state2))).to.deep.equal(['A', 'C'])
+      expect(getSelection(state2)).to.have.members(['A', 'C'])
     })
 
     it('should return given selection after modification of previously got selection', () => {
@@ -69,7 +68,7 @@ describe('getSelection/setSelection - getting / manual setting the set of select
       expect(gotItems).to.deep.equal(['A', 'C'])
       gotItems.unshift('B')
       expect(gotItems).to.deep.equal(['B', 'A', 'C'])
-      expect(orderBy(getSelection(state2))).to.deep.equal(['A', 'C'])
+      expect(getSelection(state2)).to.have.members(['A', 'C'])
     })
   })
 })
