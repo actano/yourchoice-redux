@@ -39,7 +39,7 @@ import {createStore, combineReducers} from 'redux'
 
 import {reducer as yourchoiceReducer} from 'yourchoice-redux'
 
-// connect to store, mount point must be yourchoice
+// connect to store
 const store = createStore(combineReducers({
     // ... other reducers
     yourchoice: yourchoiceReducer
