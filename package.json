@@ -60,7 +60,7 @@
   },
   "dependencies": {
     "assert": "^1.4.1",
-    "lodash": "^4.5.1",
+    "lodash": "^4.16.5",
     "yourchoice": "^2.1.0"
   }
 }
