@@ -24,7 +24,7 @@ describe('toggle - toggle selection of single item', () => {
     const state = flow(
       curriedReducer(setItems(['A', 'B', 'C'])),
       curriedReducer(setSelection(['A', 'B', 'C'])),
-      curriedReducer(toggle('B'))
+      curriedReducer(toggle('B')),
     )(undefined)
 
     expect(getSelection(state)).to.have.members(['A', 'C'])

@@ -47,7 +47,7 @@ const reducer = (state = {}, action) => {
     return update(
       selectionName,
       curry(reducerMap[action.type])(action.payload),
-      nextState
+      nextState,
     )
   }
   return nextState

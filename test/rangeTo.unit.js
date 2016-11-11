@@ -27,7 +27,7 @@ describe('rangeTo - range selection', () => {
       curriedReducer(toggle('E')),
       curriedReducer(toggle('A')),
       curriedReducer(toggle('C')),
-      curriedReducer(rangeTo('G'))
+      curriedReducer(rangeTo('G')),
     )(undefined)
 
     expect(getSelection(state)).to.have.members(['A', 'C', 'D', 'E', 'F', 'G', 'I'])

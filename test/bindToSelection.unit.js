@@ -32,7 +32,7 @@ describe('bindToSelection - get API, bound to given selection name', () => {
 
     const state = flow(
         curriedReducer(boundApiA.actions.setItems(['A', 'B', 'C'])),
-        curriedReducer(boundApiB.actions.setItems(['X', 'Y', 'Z']))
+        curriedReducer(boundApiB.actions.setItems(['X', 'Y', 'Z'])),
     )(undefined)
 
     expect(boundApiA.selectors.getItems(state)).to.deep.equal(['A', 'B', 'C'])

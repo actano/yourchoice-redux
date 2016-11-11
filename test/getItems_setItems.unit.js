@@ -36,7 +36,7 @@ describe('getItems/setItems - get/update the list of selectable items', () => {
   it('should replace all previously set items', () => {
     const state = flow(
       curriedReducer(setItems(['A', 'B', 'C'])),
-      curriedReducer(setItems(['X', 'Y', 'Z']))
+      curriedReducer(setItems(['X', 'Y', 'Z'])),
     )(undefined)
 
     expect(getItems(state)).to.deep.equal(['X', 'Y', 'Z'])

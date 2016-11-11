@@ -24,7 +24,7 @@ describe('remove - remove items from selection', () => {
     const state = flow(
       curriedReducer(setItems(['A', 'B', 'C', 'D', 'E'])),
       curriedReducer(setSelection(['A', 'C', 'D', 'E'])),
-      curriedReducer(remove(['A', 'D', 'F']))
+      curriedReducer(remove(['A', 'D', 'F'])),
     )(undefined)
 
     expect(getSelection(state)).to.have.members(['C', 'E'])

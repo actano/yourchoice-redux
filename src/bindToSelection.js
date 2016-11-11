@@ -4,18 +4,18 @@ import { bind } from 'lodash'
 const _bindSelector = curry((selectionName, selector) =>
   flow(
     get(selectionName),
-    selector
-  )
+    selector,
+  ),
 )
 
 const bindToSelection = (actions, selectors) => (selectionName = 'selection') => {
   const boundActions = mapValues(
     actionCreator => bind(actionCreator, null, selectionName),
-    actions
+    actions,
   )
   const boundSelectors = mapValues(
     _bindSelector(selectionName),
-    selectors
+    selectors,
   )
   return {
     actions: boundActions,

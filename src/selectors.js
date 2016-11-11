@@ -19,7 +19,7 @@ function defaultState(state) {
 function withDefaultState(selector) {
   return flow(
     defaultState,
-    selector
+    selector,
   )
 }
 

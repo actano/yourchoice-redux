@@ -24,7 +24,7 @@ describe('removeAll - remove all items from selection', () => {
     const state = flow(
       curriedReducer(setItems(['A', 'B', 'C'])),
       curriedReducer(setSelection(['A', 'C'])),
-      curriedReducer(removeAll())
+      curriedReducer(removeAll()),
     )(undefined)
 
     expect(getSelection(state)).to.deep.equal([])

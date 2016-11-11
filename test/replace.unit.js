@@ -24,7 +24,7 @@ describe('replace - replace whole selection by single item', () => {
     const state = flow(
       curriedReducer(setItems(['A', 'B', 'C'])),
       curriedReducer(setSelection(['A', 'C'])),
-      curriedReducer(replace('C'))
+      curriedReducer(replace('C')),
     )(undefined)
 
     expect(getSelection(state)).to.deep.equal(['C'])

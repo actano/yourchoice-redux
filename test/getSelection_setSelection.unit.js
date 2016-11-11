@@ -31,7 +31,7 @@ describe('getSelection/setSelection - getting / manual setting the set of select
   it('should return same items previously set', () => {
     const state = flow(
       curriedReducer(setItems(['A', 'B', 'C'])),
-      curriedReducer(setSelection(['A', 'C']))
+      curriedReducer(setSelection(['A', 'C'])),
     )(undefined)
 
     expect(getSelection(state)).to.have.members(['A', 'C'])
@@ -41,7 +41,7 @@ describe('getSelection/setSelection - getting / manual setting the set of select
     const state = flow(
       curriedReducer(setItems(['A', 'B', 'C'])),
       curriedReducer(setSelection(['A', 'C'])),
-      curriedReducer(setSelection(['A', 'B']))
+      curriedReducer(setSelection(['A', 'B'])),
     )(undefined)
 
     expect(getSelection(state)).to.have.members(['A', 'B'])
@@ -50,7 +50,7 @@ describe('getSelection/setSelection - getting / manual setting the set of select
   it('should only select selectable items', () => {
     const state = flow(
       curriedReducer(setItems(['A', 'B', 'C'])),
-      curriedReducer(setSelection(['A', 'C', 'D']))
+      curriedReducer(setSelection(['A', 'C', 'D'])),
     )(undefined)
 
     expect(getSelection(state)).to.have.members(['A', 'C'])
@@ -60,7 +60,7 @@ describe('getSelection/setSelection - getting / manual setting the set of select
     const state1 = flow(
       curriedReducer(setItems(['A', 'B', 'C'])),
       curriedReducer(setSelection(['A', 'C'])),
-      curriedReducer(setItems(['B', 'C']))
+      curriedReducer(setItems(['B', 'C'])),
     )(undefined)
 
     expect(getSelection(state1)).to.deep.equal(['C'])
@@ -75,7 +75,7 @@ describe('getSelection/setSelection - getting / manual setting the set of select
       const givenItems = ['A', 'C']
       const state = flow(
         curriedReducer(setItems(['A', 'B', 'C'])),
-        curriedReducer(setSelection(givenItems))
+        curriedReducer(setSelection(givenItems)),
       )(undefined)
 
       givenItems.unshift('B')
@@ -85,7 +85,7 @@ describe('getSelection/setSelection - getting / manual setting the set of select
     it('should return given selection after modification of previously got selection', () => {
       const state = flow(
         curriedReducer(setItems(['A', 'B', 'C'])),
-        curriedReducer(setSelection(['A', 'C']))
+        curriedReducer(setSelection(['A', 'C'])),
       )(undefined)
 
       const gotItems = getSelection(state)
