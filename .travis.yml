@@ -2,9 +2,9 @@ language: node_js
 node_js:
 - 6.0.0
 script:
-- npm run lint
-- npm test
-after_success: npm run coverage
+- yarn run lint
+- yarn test
+after_success: yarn run coverage
 deploy:
   provider: npm
   email: marcus.mennemeier@actano.de
