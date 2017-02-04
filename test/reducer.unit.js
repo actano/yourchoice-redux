@@ -3,6 +3,15 @@ import merge from 'lodash/merge'
 import { actionTypes, bindToSelection, reducer } from '../src'
 
 describe('reducer', () => {
+  function modifyActionType(action) {
+    // need to alienate a correct action (instead of creating a foreign action)
+    // to get 100% coverage on reducer
+
+    return merge({}, action, {
+      type: 'UNKNOWN_TYPE',
+    })
+  }
+
   it('should return initialized state on initial undefined state', () => {
     expect(reducer(undefined, { type: 'any-action' })).to.not.be.undefined
   })
@@ -41,13 +50,4 @@ describe('reducer', () => {
 
     expect(reducer('any-state', action)).to.equal('any-state')
   })
-
-  function modifyActionType(action) {
-    // need to alienate a correct action (instead of creating a foreign action)
-    // to get 100% coverage on reducer
-
-    return merge({}, action, {
-      type: 'UNKNOWN_TYPE',
-    })
-  }
 })
