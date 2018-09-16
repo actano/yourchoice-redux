@@ -1,13 +1,11 @@
-import { bind } from 'lodash'
-
 const _bindSelector = (selectionName, selector) =>
     state => selector(state ? state[selectionName] : undefined)
 
 const bindToSelection = (actions, selectors) => (selectionName = 'selection') => {
   const boundActions = {}
-  const mapFn = actionCreator => bind(actionCreator, null, selectionName)
   for (const key of Object.keys(actions)) {
-    boundActions[key] = mapFn(actions[key])
+    const actionCreator = actions[key]
+    boundActions[key] = (...param) => actionCreator(selectionName, ...param)
   }
   const boundSelectors = {}
   for (const key of Object.keys(selectors)) {
