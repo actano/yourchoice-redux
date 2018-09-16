@@ -1,6 +1,3 @@
-import {
-  has,
-} from 'lodash/fp'
 import { init } from 'yourchoice'
 
 import { setItemsReducer } from './setItems'
@@ -40,7 +37,7 @@ const reducer = (state = {}, action) => {
     nextState = Object.assign({}, nextState, { [selectionName]: init() })
   }
 
-  if (has(action.type, reducerMap)) {
+  if (reducerMap[action.type]) {
     const updater = value => reducerMap[action.type](action.payload, value)
     return Object.assign({}, nextState, { [selectionName]: updater(nextState[selectionName]) })
   }
