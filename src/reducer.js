@@ -1,7 +1,6 @@
 import {
   curry,
   has,
-  update,
 } from 'lodash/fp'
 import { init } from 'yourchoice'
 
@@ -43,11 +42,8 @@ const reducer = (state = {}, action) => {
   }
 
   if (has(action.type, reducerMap)) {
-    return update(
-      selectionName,
-      curry(reducerMap[action.type])(action.payload),
-      nextState,
-    )
+    const updater = curry(reducerMap[action.type])(action.payload)
+    return Object.assign({}, nextState, { [selectionName]: updater(nextState[selectionName]) })
   }
   return nextState
 }
