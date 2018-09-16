@@ -1,11 +1,7 @@
-import { flow, get } from 'lodash/fp'
+import { get } from 'lodash/fp'
 import { bind } from 'lodash'
 
-const _bindSelector = (selectionName, selector) =>
-  flow(
-    get(selectionName),
-    selector,
-  )
+const _bindSelector = (selectionName, selector) => state => selector(get(selectionName, state))
 
 const bindToSelection = (actions, selectors) => (selectionName = 'selection') => {
   const boundActions = {}

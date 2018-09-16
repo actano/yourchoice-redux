@@ -6,9 +6,7 @@ import {
   init,
 } from 'yourchoice'
 
-import flow from 'lodash/flow'
-
-function defaultState(state) {
+const defaultState = (state) => {
   if (state === null || state === undefined) {
     return init()
   }
@@ -16,12 +14,7 @@ function defaultState(state) {
   return state
 }
 
-function withDefaultState(selector) {
-  return flow(
-    defaultState,
-    selector,
-  )
-}
+const withDefaultState = selector => state => selector(defaultState(state))
 
 const getSelectionDefault = withDefaultState(getSelection)
 const getChangedSelectionDefault = withDefaultState(getChangedSelection)
