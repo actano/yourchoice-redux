@@ -2,7 +2,6 @@ import {
   curry,
   has,
   update,
-  set,
 } from 'lodash/fp'
 import { init } from 'yourchoice'
 
@@ -40,7 +39,7 @@ const reducer = (state = {}, action) => {
   }
   const selectionName = action.payload.selectionName
   if (!(selectionName in nextState)) {
-    nextState = set(selectionName, init(), nextState)
+    nextState = Object.assign({}, nextState, { [selectionName]: init() })
   }
 
   if (has(action.type, reducerMap)) {
