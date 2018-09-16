@@ -1,12 +1,11 @@
-import { flow, curry, get } from 'lodash/fp'
+import { flow, get } from 'lodash/fp'
 import { bind } from 'lodash'
 
-const _bindSelector = curry((selectionName, selector) =>
+const _bindSelector = (selectionName, selector) =>
   flow(
     get(selectionName),
     selector,
-  ),
-)
+  )
 
 const bindToSelection = (actions, selectors) => (selectionName = 'selection') => {
   const boundActions = {}
