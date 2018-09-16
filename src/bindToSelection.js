@@ -1,7 +1,7 @@
-import { get } from 'lodash/fp'
 import { bind } from 'lodash'
 
-const _bindSelector = (selectionName, selector) => state => selector(get(selectionName, state))
+const _bindSelector = (selectionName, selector) =>
+    state => selector(state ? state[selectionName] : undefined)
 
 const bindToSelection = (actions, selectors) => (selectionName = 'selection') => {
   const boundActions = {}
