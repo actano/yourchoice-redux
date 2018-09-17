@@ -1,22 +1,16 @@
-import { flow, curry, get, mapValues } from 'lodash/fp'
-import { bind } from 'lodash'
-
-const _bindSelector = curry((selectionName, selector) =>
-  flow(
-    get(selectionName),
-    selector,
-  ),
-)
+const _bindSelector = (selectionName, selector) =>
+    state => selector(state ? state[selectionName] : undefined)
 
 const bindToSelection = (actions, selectors) => (selectionName = 'selection') => {
-  const boundActions = mapValues(
-    actionCreator => bind(actionCreator, null, selectionName),
-    actions,
-  )
-  const boundSelectors = mapValues(
-    _bindSelector(selectionName),
-    selectors,
-  )
+  const boundActions = {}
+  for (const key of Object.keys(actions)) {
+    const actionCreator = actions[key]
+    boundActions[key] = (...param) => actionCreator(selectionName, ...param)
+  }
+  const boundSelectors = {}
+  for (const key of Object.keys(selectors)) {
+    boundSelectors[key] = _bindSelector(selectionName, selectors[key])
+  }
   return {
     actions: boundActions,
     selectors: boundSelectors,
