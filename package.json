@@ -52,6 +52,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.9.0",
+    "lodash": "^4.2.0",
     "mocha": "^3.0.0",
     "nyc": "^9.0.1",
     "rimraf": "^2.5.2",
@@ -60,7 +61,6 @@
   },
   "dependencies": {
     "assert": "^1.4.1",
-    "lodash": "^4.5.1",
     "yourchoice": "^2.1.0"
   }
 }
