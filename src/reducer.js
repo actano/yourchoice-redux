@@ -32,7 +32,7 @@ const reducer = (state = {}, action) => {
   if (!action || action.error || !action.payload || !action.payload.selectionName) {
     return nextState
   }
-  const selectionName = action.payload.selectionName
+  const { selectionName } = action.payload
   if (!(selectionName in nextState)) {
     nextState = Object.assign({}, nextState, { [selectionName]: init() })
   }

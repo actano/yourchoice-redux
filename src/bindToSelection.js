@@ -1,5 +1,5 @@
 const _bindSelector = (selectionName, selector) =>
-    state => selector(state ? state[selectionName] : undefined)
+  state => selector(state ? state[selectionName] : undefined)
 
 const bindToSelection = (actions, selectors) => (selectionName = 'selection') => {
   const boundActions = {}
