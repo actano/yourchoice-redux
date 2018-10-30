@@ -61,6 +61,6 @@
   },
   "dependencies": {
     "assert": "^1.4.1",
-    "yourchoice": "^2.1.0"
+    "yourchoice": "^2.2.4"
   }
 }
